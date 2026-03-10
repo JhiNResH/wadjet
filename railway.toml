@@ -1,0 +1,20 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
+
+# ─── Daily cron service ───────────────────────────────────────────────────────
+# Uncomment the block below to add the cron as a second Railway service.
+# Alternatively, create a separate Railway service with startCommand below.
+#
+# [[services]]
+# name = "wadjet-cron"
+#
+#   [services.deploy]
+#   startCommand = "python scripts/daily_cron.py"
+#   cronSchedule = "0 2 * * *"

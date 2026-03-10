@@ -1,0 +1,1796 @@
+{
+  "dex:0x895955650d64e36ddcc1a3c5a92674b651577e8a": {
+    "_ts": 1773175714.267094,
+    "no_data": true
+  },
+  "dex:0x0f8f2364fb174e7feba1375d380c5ec06f1bf3f1": {
+    "_ts": 1773175716.61311,
+    "no_data": true
+  },
+  "dex:0xb4874895952af1978335a03923afd9dd2d428faa": {
+    "_ts": 1773175718.859879,
+    "no_data": true
+  },
+  "dex:0xc44141a684f6aa4e36cd9264ab55550b03c88643": {
+    "_ts": 1773175721.062614,
+    "pair_address": "0x47006DCFC5AA14B577D3D2a0e39F72046bF4C054",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "ETHY",
+    "price_usd": 0.001547,
+    "price_change_5m": 0.02,
+    "price_change_1h": 2.88,
+    "price_change_6h": -6.94,
+    "price_change_24h": -8.29,
+    "volume_5m": 10.11,
+    "volume_1h": 1672.27,
+    "volume_6h": 21910.73,
+    "volume_24h": 63078.23,
+    "liquidity_usd": 247265.28,
+    "liquidity_base": 79866798.0,
+    "market_cap": 1408667.0,
+    "fdv": 1533202.0,
+    "pair_created_at": 1737101083000,
+    "txns_24h_buys": 164,
+    "txns_24h_sells": 153,
+    "info_websites": [
+      "https://ethyai.app/",
+      "https://docs.ethyai.app/",
+      "https://app.virtuals.io/virtuals/19520",
+      "https://chat.ethyai.app/"
+    ],
+    "info_socials": [
+      "https://x.com/ethy_agent",
+      "https://t.me/basenamesai"
+    ]
+  },
+  "gp:0xc44141a684f6aa4e36cd9264ab55550b03c88643": {
+    "_ts": 1773175723.700379,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 13060,
+    "lp_holder_count": 2,
+    "lp_total_supply": 0.13180752834697837,
+    "creator_address": "0x4d3877abc39d131a39ce21dd0675ad3c1e3f3f32",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.3315813987366227,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x4d3877abc39d131a39ce21dd0675ad3c1e3f3f32": {
+    "_ts": 1773175725.117079,
+    "creator_eth_balance": 7.97237721947e-07,
+    "creator_tx_count": 815,
+    "creator_token_interactions": 37
+  },
+  "dex:0x58db197e91bc8cf1587f75850683e4bd0730e6bf": {
+    "_ts": 1773175725.278521,
+    "pair_address": "0x6D5dF1d155d79279ABD65A98815F7853C2b3a005",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "AXR",
+    "price_usd": 0.0009643,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 0.62,
+    "price_change_24h": 13.08,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 8970.68,
+    "volume_24h": 19132.74,
+    "liquidity_usd": 161845.7,
+    "liquidity_base": 83916936.0,
+    "market_cap": 734600.0,
+    "fdv": 964321.0,
+    "pair_created_at": 1747228065000,
+    "txns_24h_buys": 51,
+    "txns_24h_sells": 43,
+    "info_websites": [
+      "https://axr.aixvc.io/",
+      "https://docs.aixvc.io/introduction"
+    ],
+    "info_socials": [
+      "https://x.com/AIxVC_Axelrod",
+      "https://t.me/AIxVC"
+    ]
+  },
+  "gp:0x58db197e91bc8cf1587f75850683e4bd0730e6bf": {
+    "_ts": 1773175727.884778,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 26882,
+    "lp_holder_count": 3,
+    "lp_total_supply": 3.22614493e-10,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.7038658337176258,
+    "lp_locked_pct": 3.099674756397e-06,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x81f7ca6af86d1ca6335e44a2c28bc88807491415": {
+    "_ts": 1773175729.199175,
+    "creator_eth_balance": 1.3180318209383206,
+    "creator_tx_count": 35151,
+    "creator_token_interactions": 23
+  },
+  "dex:0xc2427bf51d99b6ed0da0da103bc51235638ee868": {
+    "_ts": 1773175729.363242,
+    "pair_address": "0x28E97e5d5040c0feC97E85C587C0ae829CA504Ff",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "BOT",
+    "price_usd": 0.004092,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -1.39,
+    "price_change_24h": 3.72,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 191.81,
+    "volume_24h": 521.25,
+    "liquidity_usd": 262825.33,
+    "liquidity_base": 32108453.0,
+    "market_cap": 1748015.0,
+    "fdv": 4092775.0,
+    "pair_created_at": 1767727589000,
+    "txns_24h_buys": 13,
+    "txns_24h_sells": 35,
+    "info_websites": [
+      "https://www.wasa.bot/"
+    ],
+    "info_socials": [
+      "https://x.com/wasadotbot",
+      "https://www.t.me/WasabiPortal",
+      "https://discord.gg/PKczHAtr2n"
+    ]
+  },
+  "gp:0xc2427bf51d99b6ed0da0da103bc51235638ee868": {
+    "_ts": 1773175732.0445051,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 5609,
+    "lp_holder_count": 2,
+    "lp_total_supply": 1181.0224588773879,
+    "creator_address": "0x6d4f100406774daddefd3ea486e44c2962030f24",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.9213175322043509,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x6d4f100406774daddefd3ea486e44c2962030f24": {
+    "_ts": 1773175733.412799,
+    "creator_eth_balance": 0.002340255487030039,
+    "creator_tx_count": 16291,
+    "creator_token_interactions": 9
+  },
+  "dex:0x2550655c193f85341ef13034cc13762646118d03": {
+    "_ts": 1773175733.597378,
+    "no_data": true
+  },
+  "dex:0x7cdf718bf4b57aac1a2b4a81727314841a660fe6": {
+    "_ts": 1773175735.8898969,
+    "no_data": true
+  },
+  "dex:0xbfa733702305280f066d470afdfa784fa70e2649": {
+    "_ts": 1773175738.286415,
+    "pair_address": "0xC19fb7AF58B67a072Ce23362c2fb1d61ebE6d4CA",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "CAP",
+    "price_usd": 0.000455,
+    "price_change_5m": 0.0,
+    "price_change_1h": -3.06,
+    "price_change_6h": -2.56,
+    "price_change_24h": -14.76,
+    "volume_5m": 0.0,
+    "volume_1h": 233.64,
+    "volume_6h": 429.3,
+    "volume_24h": 22167.83,
+    "liquidity_usd": 97063.46,
+    "liquidity_base": 106650910.0,
+    "market_cap": 267730.0,
+    "fdv": 267730.0,
+    "pair_created_at": 1748016063000,
+    "txns_24h_buys": 33,
+    "txns_24h_sells": 54,
+    "info_websites": [
+      "https://capminal.ai",
+      "https://capminal.gitbook.io/docs",
+      "https://link3.to/capminal",
+      "https://paragraph.xyz/@capminal"
+    ],
+    "info_socials": [
+      "https://x.com/capminal",
+      "https://t.me/capminalchannel"
+    ]
+  },
+  "gp:0xbfa733702305280f066d470afdfa784fa70e2649": {
+    "_ts": 1773175740.900414,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 10597,
+    "lp_holder_count": 2,
+    "lp_total_supply": 1e-15,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.7120819815739791,
+    "lp_locked_pct": 1.0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0x85fbe583368888bc8dabde6f1e6ec6a3f0b2a040": {
+    "_ts": 1773175741.450786,
+    "pair_address": "0xb8490db9A26fea722a4BcD2c2900B5f3aC978676",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "MORSE",
+    "price_usd": 0.0002578,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 6.47,
+    "price_change_24h": 8.0,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 0.53,
+    "volume_24h": 25.57,
+    "liquidity_usd": 63391.49,
+    "liquidity_base": 122925114.0,
+    "market_cap": 257846.0,
+    "fdv": 257846.0,
+    "pair_created_at": 1764954653000,
+    "txns_24h_buys": 1,
+    "txns_24h_sells": 3,
+    "info_websites": [
+      "https://morseai.tech/",
+      "https://app.virtuals.io/virtuals/41850"
+    ],
+    "info_socials": [
+      "https://x.com/morseaiagent",
+      "https://t.me/morseaitech/1"
+    ]
+  },
+  "gp:0x85fbe583368888bc8dabde6f1e6ec6a3f0b2a040": {
+    "_ts": 1773175744.357961,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 4275,
+    "lp_holder_count": 1,
+    "lp_total_supply": 0.01081301266233596,
+    "creator_address": "0xeac5191e1cde5fb2aec5c477dbf33a23312c4044",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.8926558793981654,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0xeac5191e1cde5fb2aec5c477dbf33a23312c4044": {
+    "_ts": 1773175745.6716921,
+    "creator_eth_balance": 0.00011772447403804,
+    "creator_tx_count": 111,
+    "creator_token_interactions": 12
+  },
+  "dex:0xabd3718656dbb5547d6b426c18b03848d18981ea": {
+    "_ts": 1773175745.848041,
+    "no_data": true
+  },
+  "dex:0xc12b70c36384892cc24f16e95bb1b0a3cb48673c": {
+    "_ts": 1773175748.049332,
+    "no_data": true
+  },
+  "dex:0x4674f73545f1db4036250ff8c33a39ad1678d864": {
+    "_ts": 1773175750.219788,
+    "pair_address": "0xAc534fc720feC7cd6b008765cd255074e0742152",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "SQDGN",
+    "price_usd": 0.0004258,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -1.67,
+    "price_change_24h": -7.07,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 309.25,
+    "volume_24h": 6850.29,
+    "liquidity_usd": 159387.35,
+    "liquidity_base": 187142813.0,
+    "market_cap": 398361.0,
+    "fdv": 398361.0,
+    "pair_created_at": 1733341183000,
+    "txns_24h_buys": 11,
+    "txns_24h_sells": 45,
+    "info_websites": [
+      "https://sqdgn.ai/"
+    ],
+    "info_socials": [
+      "https://x.com/helloSQDGN",
+      "https://t.me/SQDGNOfficial"
+    ]
+  },
+  "gp:0x4674f73545f1db4036250ff8c33a39ad1678d864": {
+    "_ts": 1773175752.841412,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 78142,
+    "lp_holder_count": 1,
+    "lp_total_supply": 1e-15,
+    "creator_address": "0x3b3f8a08483973a4ad852aeff685d775bc460ccc",
+    "creator_balance": 7.49975e-13,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.5129619153978214,
+    "lp_locked_pct": 1.0,
+    "total_supply": 977805568.0018129
+  },
+  "alchemy:0x3b3f8a08483973a4ad852aeff685d775bc460ccc": {
+    "_ts": 1773175754.032693,
+    "creator_eth_balance": 0.000996724684166881,
+    "creator_tx_count": 2314,
+    "creator_token_interactions": 36
+  },
+  "dex:0x350c974ad936a423ba6e3a249eadc34a5dd5577d": {
+    "_ts": 1773175754.213293,
+    "no_data": true
+  },
+  "dex:0xa0d9818b0b3e13bde1b2109c48e9ee8d0588597d": {
+    "_ts": 1773175756.43237,
+    "no_data": true
+  },
+  "dex:0x2825c5205a5a6ba078e9e33514f4d0bb2e07dbac": {
+    "_ts": 1773175758.625082,
+    "no_data": true
+  },
+  "dex:0x4a66a1224133e38f3d10e70a4836eb93e99b16a3": {
+    "_ts": 1773175760.871138,
+    "no_data": true
+  },
+  "dex:0xb47184fb18961c86089f427f8b920d60255a90bb": {
+    "_ts": 1773175763.191916,
+    "no_data": true
+  },
+  "dex:0x4f8a0ade7e2b7d34f9f08d6d8ebcbdb0f45b1481": {
+    "_ts": 1773175765.4227571,
+    "no_data": true
+  },
+  "dex:0xb69ec39efbcde0f4cdf788e232e5b14bbe801d58": {
+    "_ts": 1773175767.7747562,
+    "no_data": true
+  },
+  "dex:0x8e665c3a3622d7c1bef8ed8ffd7317d3f6318e31": {
+    "_ts": 1773175770.234366,
+    "pair_address": "0x4bDE3Ca2603BA4d3345F92Ee70Fea5Ba6DaB6a67",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "OOPZ",
+    "price_usd": 0.0002745,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 2.36,
+    "price_change_24h": 26.29,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 301.24,
+    "volume_24h": 2643.55,
+    "liquidity_usd": 72973.64,
+    "liquidity_base": 132884313.0,
+    "market_cap": 267025.0,
+    "fdv": 274576.0,
+    "pair_created_at": 1749218477000,
+    "txns_24h_buys": 6,
+    "txns_24h_sells": 9,
+    "info_websites": [
+      "https://www.oopz.io/",
+      "https://docs.oopz.io/",
+      "http://medium.com/@OracleOPZ",
+      "https://app.virtuals.io/virtuals/28759"
+    ],
+    "info_socials": [
+      "https://x.com/oracle_opz",
+      "https://t.me/oracle_opz"
+    ]
+  },
+  "gp:0x8e665c3a3622d7c1bef8ed8ffd7317d3f6318e31": {
+    "_ts": 1773175772.936022,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 16132,
+    "lp_holder_count": 1,
+    "lp_total_supply": 1e-15,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.6084020790171335,
+    "lp_locked_pct": 1.0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0xcd31c4b96faaeee486451c52fd50d9096f48afba": {
+    "_ts": 1773175773.4224021,
+    "no_data": true
+  },
+  "dex:0x0c76bb08a9357b8f15ff506a2e22b9163b8c5c44": {
+    "_ts": 1773175775.688504,
+    "no_data": true
+  },
+  "dex:0x380337d0180db7d0df76ac4faae2fcea908ee1fc": {
+    "_ts": 1773175777.904185,
+    "pair_address": "0x1df58424e3ae0421d5fAF70e9D7CB84d7B017eC5",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "OTTO",
+    "price_usd": 0.001292,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 1.56,
+    "price_change_24h": 1.72,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 612.74,
+    "volume_24h": 5324.51,
+    "liquidity_usd": 146338.94,
+    "liquidity_base": 56596908.0,
+    "market_cap": 494366.0,
+    "fdv": 1267443.0,
+    "pair_created_at": 1760012779000,
+    "txns_24h_buys": 5,
+    "txns_24h_sells": 22,
+    "info_websites": [
+      "https://useotto.xyz/",
+      "https://docs.useotto.xyz/",
+      "https://app.virtuals.io/virtuals/38861",
+      "https://ottoai.medium.com/",
+      "https://paragraph.com/@ottoai"
+    ],
+    "info_socials": [
+      "https://x.com/useOttoAI",
+      "https://t.me/useOttoAI"
+    ]
+  },
+  "gp:0x380337d0180db7d0df76ac4faae2fcea908ee1fc": {
+    "_ts": 1773175780.590573,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 6835,
+    "lp_holder_count": 1,
+    "lp_total_supply": 1197.9513613931172,
+    "creator_address": "0xeb83641c61754c0ca3d73c47f5d86a75ed083269",
+    "creator_balance": 734841.4743090601,
+    "creator_percent": 0.000735,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.8488397130908296,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0xeb83641c61754c0ca3d73c47f5d86a75ed083269": {
+    "_ts": 1773175781.908662,
+    "creator_eth_balance": 0.0057314361730528,
+    "creator_tx_count": 340,
+    "creator_token_interactions": 10
+  },
+  "dex:0x8b20b8a04c26e2abf1a89659d4fedcee337c0390": {
+    "_ts": 1773175782.101954,
+    "no_data": true
+  },
+  "dex:0xa02c0ccfe222869aab46ae389527f48ed22e05ff": {
+    "_ts": 1773175784.344563,
+    "no_data": true
+  },
+  "dex:0x1a3e429d2d22149cc61e0f539b112a227c844aa3": {
+    "_ts": 1773175786.577936,
+    "pair_address": "0xcD6efB9c75c79449f5A0D689c5528154D162762e",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "LOKY",
+    "price_usd": 0.0002793,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -10.4,
+    "price_change_24h": -3.85,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 2974.77,
+    "volume_24h": 3251.46,
+    "liquidity_usd": 82868.04,
+    "liquidity_base": 148324449.0,
+    "market_cap": 262622.0,
+    "fdv": 268522.0,
+    "pair_created_at": 1733153401000,
+    "txns_24h_buys": 12,
+    "txns_24h_sells": 8,
+    "info_websites": [
+      "https://lokyai.com/",
+      "https://dapplooker.gitbook.io/loky-docs",
+      "https://app.virtuals.io/virtuals/12681",
+      "https://lokyai.com/home",
+      "https://lokyai.com/terminal/lqa",
+      "https://lokyai.com/staking",
+      "https://swap.cow.fi/#/8453/swap/USDC/LOKY"
+    ],
+    "info_socials": [
+      "https://x.com/Loky_AI",
+      "https://t.me/Loky_AI"
+    ]
+  },
+  "gp:0x1a3e429d2d22149cc61e0f539b112a227c844aa3": {
+    "_ts": 1773175789.15511,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 96016,
+    "lp_holder_count": 0,
+    "lp_total_supply": 0.0,
+    "creator_address": "0x75bfa139b8424062981dc8bdaee344a56cc035da",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.5702258021895019,
+    "lp_locked_pct": 0.0,
+    "total_supply": 995683653.9076767
+  },
+  "alchemy:0x75bfa139b8424062981dc8bdaee344a56cc035da": {
+    "_ts": 1773175790.466251,
+    "creator_eth_balance": 2.10000782228e-07,
+    "creator_tx_count": 469,
+    "creator_token_interactions": 20
+  },
+  "dex:0x04109779bd88f7c5dc8969954db0c2b07e918f04": {
+    "_ts": 1773175792.427111,
+    "no_data": true
+  },
+  "dex:0x918aeec9e19b375e3ecdda0c47c2c4a6b2c82f51": {
+    "_ts": 1773175794.6095989,
+    "no_data": true
+  },
+  "dex:0xa2aa91cdf6d39c0199c954172d5a05153c7d3dfd": {
+    "_ts": 1773175796.98564,
+    "pair_address": "0x56810888309a543605C316a31F91b0f048174759",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "KLARK",
+    "price_usd": 7.802e-06,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -1.84,
+    "price_change_24h": 4.14,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 0.66,
+    "volume_24h": 1.12,
+    "liquidity_usd": 10933.94,
+    "liquidity_base": 700677865.0,
+    "market_cap": 7802.0,
+    "fdv": 7802.0,
+    "pair_created_at": 1771171437000,
+    "txns_24h_buys": 4,
+    "txns_24h_sells": 2,
+    "info_websites": [],
+    "info_socials": [
+      "https://x.com/klarkagent"
+    ]
+  },
+  "gp:0xa2aa91cdf6d39c0199c954172d5a05153c7d3dfd": {
+    "_ts": 1773175799.687834,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 266,
+    "lp_holder_count": 2,
+    "lp_total_supply": 2126.1816949968347,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.9169112507992095,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0x33861637fc0c5c71d7a4bc09740836a9306bed20": {
+    "_ts": 1773175800.21555,
+    "no_data": true
+  },
+  "dex:0x504a26cf29674bc77a9341e73f88ccecc864034c": {
+    "_ts": 1773175802.45101,
+    "pair_address": "0xF22482a194b7Df297599a8d05c418C4F36CbE560",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "SYMP",
+    "price_usd": 0.0001625,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 0.91,
+    "price_change_24h": -6.53,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 0.55,
+    "volume_24h": 1878.45,
+    "liquidity_usd": 63774.88,
+    "liquidity_base": 196196028.0,
+    "market_cap": 162524.0,
+    "fdv": 162524.0,
+    "pair_created_at": 1736537201000,
+    "txns_24h_buys": 5,
+    "txns_24h_sells": 5,
+    "info_websites": [
+      "https://www.sympai.io/",
+      "https://sympson-ai.gitbook.io/sympson_docs"
+    ],
+    "info_socials": [
+      "https://x.com/Symp_AI"
+    ]
+  },
+  "gp:0x504a26cf29674bc77a9341e73f88ccecc864034c": {
+    "_ts": 1773175805.109613,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 64838,
+    "lp_holder_count": 1,
+    "lp_total_supply": 1e-15,
+    "creator_address": "0x68c87c2f96bf718481293f7350f4f6d364c0b4a0",
+    "creator_balance": 1798610.721603382,
+    "creator_percent": 0.001799,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.5964334205590355,
+    "lp_locked_pct": 1.0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x68c87c2f96bf718481293f7350f4f6d364c0b4a0": {
+    "_ts": 1773175806.567212,
+    "creator_eth_balance": 0.08628296965424606,
+    "creator_tx_count": 30,
+    "creator_token_interactions": 4
+  },
+  "dex:0xd85bb30de78f9b760d86b527bb13ea5a789ac3d1": {
+    "_ts": 1773175806.833805,
+    "no_data": true
+  },
+  "dex:0x5da817a8a1a8931d0e7f83093437d90cc29c88b0": {
+    "_ts": 1773175809.065244,
+    "no_data": true
+  },
+  "dex:0xca51e5f09a444b3d916376d5bcb53728cc8fc003": {
+    "_ts": 1773175811.3286169,
+    "no_data": true
+  },
+  "dex:0xc1b641e72327208f0fe37405a9d46439b626af6a": {
+    "_ts": 1773175813.587868,
+    "pair_address": "0xf564Fd4CD8fc89d5a5dc2AE83Ed561Ada8623EEd",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "WAYE",
+    "price_usd": 0.0004686,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 2.18,
+    "price_change_24h": 7.7,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 3.78,
+    "volume_24h": 28.09,
+    "liquidity_usd": 85987.91,
+    "liquidity_base": 91733262.0,
+    "market_cap": 196262.0,
+    "fdv": 468684.0,
+    "pair_created_at": 1768398699000,
+    "txns_24h_buys": 16,
+    "txns_24h_sells": 4,
+    "info_websites": [
+      "https://waye.ai/"
+    ],
+    "info_socials": [
+      "https://x.com/WAYE_ai",
+      "https://t.me/WAYEai"
+    ]
+  },
+  "gp:0xc1b641e72327208f0fe37405a9d46439b626af6a": {
+    "_ts": 1773175816.211966,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 2164,
+    "lp_holder_count": 1,
+    "lp_total_supply": 6.72358815973e-07,
+    "creator_address": "0x709e45ef4c47ec830af397a258443210a82ce3be",
+    "creator_balance": 607.1403996698109,
+    "creator_percent": 1e-06,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.9908409519301249,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x709e45ef4c47ec830af397a258443210a82ce3be": {
+    "_ts": 1773175817.3816588,
+    "creator_eth_balance": 0.003435490738156214,
+    "creator_tx_count": 5,
+    "creator_token_interactions": 1
+  },
+  "dex:0x8f79bea6c430eccb5c0b1878a1bc0d52f38de202": {
+    "_ts": 1773175817.515958,
+    "pair_address": "0x064B3bCb87Ef77305b672d86de5808D5D8Fa8c3d",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "HFURY",
+    "price_usd": 0.0001353,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -11.07,
+    "price_change_24h": -7.6,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 1420.85,
+    "volume_24h": 3346.63,
+    "liquidity_usd": 44966.63,
+    "liquidity_base": 166085568.0,
+    "market_cap": 135372.0,
+    "fdv": 135372.0,
+    "pair_created_at": 1759919257000,
+    "txns_24h_buys": 2,
+    "txns_24h_sells": 3,
+    "info_websites": [],
+    "info_socials": []
+  },
+  "gp:0x8f79bea6c430eccb5c0b1878a1bc0d52f38de202": {
+    "_ts": 1773175820.078315,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 6239,
+    "lp_holder_count": 1,
+    "lp_total_supply": 22.719295446420823,
+    "creator_address": "0x7311ce65213b6903acb102923356a38be0113144",
+    "creator_balance": 106683297.41548902,
+    "creator_percent": 0.106683,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.9321639547022101,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x7311ce65213b6903acb102923356a38be0113144": {
+    "_ts": 1773175821.52272,
+    "creator_eth_balance": 0.000471347032793754,
+    "creator_tx_count": 235,
+    "creator_token_interactions": 24
+  },
+  "dex:0x919e43a2cce006710090e64bde9e01b38fd7f32f": {
+    "_ts": 1773175821.653994,
+    "no_data": true
+  },
+  "dex:0xfc80d757b0249d4ce57c26c97a14792bffb22f24": {
+    "_ts": 1773175823.881043,
+    "no_data": true
+  },
+  "dex:0xd662b28538940436d101860bce44619f74f8bbe4": {
+    "_ts": 1773175826.4276512,
+    "no_data": true
+  },
+  "dex:0x4a2a7ee24d7d2afa033bdd89c062abbb0f7ec212": {
+    "_ts": 1773175828.614282,
+    "no_data": true
+  },
+  "dex:0xf7edd58760981287a0983d31e4144a2f857e8fb0": {
+    "_ts": 1773175830.8800662,
+    "no_data": true
+  },
+  "dex:0x0eda054e27a274323e07023972f47c36693ce5df": {
+    "_ts": 1773175833.064948,
+    "pair_address": "0x43EF34C82e28cab4f1d4e9404000A139c5434a46",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "CUC",
+    "price_usd": 0.0001647,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 0.0,
+    "price_change_24h": 7.6,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 0.0,
+    "volume_24h": 5331.46,
+    "liquidity_usd": 51842.04,
+    "liquidity_base": 157316720.0,
+    "market_cap": 102881.0,
+    "fdv": 164770.0,
+    "pair_created_at": 1762471873000,
+    "txns_24h_buys": 10,
+    "txns_24h_sells": 8,
+    "info_websites": [
+      "https://cucumber.trade",
+      "https://docs.cucumber.trade"
+    ],
+    "info_socials": [
+      "https://x.com/TradeOnCucumber"
+    ]
+  },
+  "gp:0x0eda054e27a274323e07023972f47c36693ce5df": {
+    "_ts": 1773175835.750358,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 4239,
+    "lp_holder_count": 1,
+    "lp_total_supply": 5.460749274742e-06,
+    "creator_address": "0xf828326abe114966c4e40555b3a596e5fa5d9149",
+    "creator_balance": 108977658.97446336,
+    "creator_percent": 0.108978,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.9546015172435882,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0xf828326abe114966c4e40555b3a596e5fa5d9149": {
+    "_ts": 1773175837.0052302,
+    "creator_eth_balance": 0.008981011124537338,
+    "creator_tx_count": 71,
+    "creator_token_interactions": 12
+  },
+  "dex:0x99878d786446b187f2149caefd3092647642db92": {
+    "_ts": 1773175837.1650932,
+    "no_data": true
+  },
+  "dex:0xd79d6585d00a37d115d8fa4e2762b95adc369351": {
+    "_ts": 1773175839.4132,
+    "pair_address": "0x6B6b0e5C8004a639bB9aB61100AAE6B1DaE86fE1",
+    "dex_id": "uniswap",
+    "chain_id": "ethereum",
+    "base_token": "STRATOS",
+    "price_usd": 8.378e-05,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 7.39,
+    "price_change_24h": 7.39,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 5.81,
+    "volume_24h": 25.79,
+    "liquidity_usd": 35957.4,
+    "liquidity_base": 214569800.0,
+    "market_cap": 83790.0,
+    "fdv": 83790.0,
+    "pair_created_at": 1750079027000,
+    "txns_24h_buys": 1,
+    "txns_24h_sells": 1,
+    "info_websites": [],
+    "info_socials": []
+  },
+  "alchemy:0x2A6BE2540600fbAE038BCCdA2a6a4c486C2E6a0C": {
+    "_ts": 1773175843.292065,
+    "creator_eth_balance": 0.0,
+    "creator_tx_count": 1,
+    "creator_token_interactions": 0
+  },
+  "dex:0x5d6ec1ecc323049997bc5b09a7cff9dac955c3c3": {
+    "_ts": 1773175843.481218,
+    "no_data": true
+  },
+  "dex:0xed4014543283f2e2a8a2bba2e58ad971520f55d1": {
+    "_ts": 1773175845.6737258,
+    "no_data": true
+  },
+  "dex:0x817aa8bafb8b358ddfe35ae11efa41966dfc3009": {
+    "_ts": 1773175847.9453702,
+    "no_data": true
+  },
+  "dex:0x9c542eb109d493a9b6c734db812468e238ee5124": {
+    "_ts": 1773175850.220551,
+    "no_data": true
+  },
+  "dex:0xe821e39503b1fb5706f0fa264ec6f37f1801c7e7": {
+    "_ts": 1773175852.56386,
+    "no_data": true
+  },
+  "dex:0xf1b6ab7d3eeb4fab06a27066d7a0f4f57fc1f5ea": {
+    "_ts": 1773175854.834101,
+    "no_data": true
+  },
+  "dex:0x15ec9112637f3fe3aea458d7e1e97d700b13e9db": {
+    "_ts": 1773175857.1123981,
+    "no_data": true
+  },
+  "dex:0x17e9712fff8ea765ae4a92682aebd2189e7f2990": {
+    "_ts": 1773175859.337559,
+    "no_data": true
+  },
+  "dex:0xa3694995b1896f11d316755d55dd99d5dba3a3e3": {
+    "_ts": 1773175861.617703,
+    "no_data": true
+  },
+  "dex:0xdd77398d58505a18d26d34199b8101b9a249ba55": {
+    "_ts": 1773175863.8664582,
+    "no_data": true
+  },
+  "dex:0x73cb479f2ccf77bad90bcda91e3987358437240a": {
+    "_ts": 1773175866.03426,
+    "pair_address": "0xC98223367DdCd80ca3f7368362Fa3ceC20B3264d",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "BIOS",
+    "price_usd": 0.0001704,
+    "price_change_5m": 0.0,
+    "price_change_1h": -0.24,
+    "price_change_6h": -10.75,
+    "price_change_24h": 9.12,
+    "volume_5m": 0.0,
+    "volume_1h": 81.8,
+    "volume_6h": 2064.36,
+    "volume_24h": 10252.78,
+    "liquidity_usd": 70311.44,
+    "liquidity_base": 206274748.0,
+    "market_cap": 140349.0,
+    "fdv": 170432.0,
+    "pair_created_at": 1745622039000,
+    "txns_24h_buys": 31,
+    "txns_24h_sells": 46,
+    "info_websites": [
+      "https://basisos.org/",
+      "https://docs.basisos.org/"
+    ],
+    "info_socials": [
+      "https://x.com/BasisOS",
+      "https://discord.gg/GQJ29r4dnb"
+    ]
+  },
+  "gp:0x73cb479f2ccf77bad90bcda91e3987358437240a": {
+    "_ts": 1773175868.65815,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 22424,
+    "lp_holder_count": 1,
+    "lp_total_supply": 1e-15,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.6640813711052719,
+    "lp_locked_pct": 1.0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0xdb40005fa4a9cc73fc48ac38d5d5cf3455f37d3b": {
+    "_ts": 1773175869.0744388,
+    "pair_address": "0xfD04273a2F7e63B76270C7bbd24b5F5118C4a784",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "SWAN",
+    "price_usd": 0.0001219,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 1.12,
+    "price_change_24h": 5.1,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 140.22,
+    "volume_24h": 206.35,
+    "liquidity_usd": 44659.88,
+    "liquidity_base": 183036112.0,
+    "market_cap": 121997.0,
+    "fdv": 121997.0,
+    "pair_created_at": 1768457093000,
+    "txns_24h_buys": 4,
+    "txns_24h_sells": 27,
+    "info_websites": [
+      "https://blackswan.wtf",
+      "https://app.virtuals.io/virtuals/43060"
+    ],
+    "info_socials": [
+      "https://x.com/blackswanwtf",
+      "https://t.me/blackswanwtf",
+      "https://farcaster.xyz/blackswanwtf"
+    ]
+  },
+  "gp:0xdb40005fa4a9cc73fc48ac38d5d5cf3455f37d3b": {
+    "_ts": 1773175871.7209,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 3858,
+    "lp_holder_count": 2,
+    "lp_total_supply": 1.6360326203e-08,
+    "creator_address": "0x5942eee5a41b91d474cf0275d986b14abb3154e7",
+    "creator_balance": 85000.0,
+    "creator_percent": 8.5e-05,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.9401911862693394,
+    "lp_locked_pct": 6.1123475631e-08,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x5942eee5a41b91d474cf0275d986b14abb3154e7": {
+    "_ts": 1773175872.909918,
+    "creator_eth_balance": 0.002587249824840854,
+    "creator_tx_count": 173,
+    "creator_token_interactions": 10
+  },
+  "dex:0xacd85f0be2bf5b47cea13bdcfa89e8d36fa2786d": {
+    "_ts": 1773175873.0622342,
+    "no_data": true
+  },
+  "dex:0x7056d7636ef79ac5758bb03c7adcde1ef1a28d4d": {
+    "_ts": 1773175875.282335,
+    "no_data": true
+  },
+  "dex:0x80ded22d9c6487181ed74d0222add805815e8df4": {
+    "_ts": 1773175877.54486,
+    "pair_address": "0xbCCFb65960F9648F4DAD7Be579590050DfeE385f",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "CENTRY",
+    "price_usd": 0.0002204,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -2.65,
+    "price_change_24h": 35.15,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 348.82,
+    "volume_24h": 5796.85,
+    "liquidity_usd": 61285.58,
+    "liquidity_base": 138986646.0,
+    "market_cap": 155706.0,
+    "fdv": 220473.0,
+    "pair_created_at": 1750248071000,
+    "txns_24h_buys": 10,
+    "txns_24h_sells": 16,
+    "info_websites": [
+      "https://centry.cybercentry.co.uk/",
+      "https://cybercentry.gitbook.io/cybercentry",
+      "https://centry.cybercentry.co.uk/collections"
+    ],
+    "info_socials": [
+      "https://x.com/centry_agent",
+      "https://t.me/Cybercentry_Channel",
+      "https://discord.com/invite/59rwPWFCdK"
+    ]
+  },
+  "gp:0x80ded22d9c6487181ed74d0222add805815e8df4": {
+    "_ts": 1773175880.4260108,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 2111,
+    "lp_holder_count": 0,
+    "lp_total_supply": 0.0,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.6800298322269877,
+    "lp_locked_pct": 0.0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0x27990c0fe8bb79126f8f012a77e0a5837b2be0e1": {
+    "_ts": 1773175880.964642,
+    "pair_address": "0x0CAEa6D9F7e6Ccf820f559412f7cF195B28e1657",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "POKEPULL",
+    "price_usd": 3.092e-05,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -5.57,
+    "price_change_24h": -9.26,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 269.98,
+    "volume_24h": 949.12,
+    "liquidity_usd": 21444.26,
+    "liquidity_base": 346757582.0,
+    "market_cap": 30921.0,
+    "fdv": 30921.0,
+    "pair_created_at": 1771238155000,
+    "txns_24h_buys": 3,
+    "txns_24h_sells": 9,
+    "info_websites": [],
+    "info_socials": []
+  },
+  "gp:0x27990c0fe8bb79126f8f012a77e0a5837b2be0e1": {
+    "_ts": 1773175884.1044102,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 313,
+    "lp_holder_count": 1,
+    "lp_total_supply": 24.902230803359096,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.6364652023750519,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0x2629a9d8189d31120a2407b0dcb0482d66e642ed": {
+    "_ts": 1773175884.6003442,
+    "no_data": true
+  },
+  "dex:0x54522bdfa810d02922fca695eeb26892d601ba09": {
+    "_ts": 1773175886.859751,
+    "no_data": true
+  },
+  "dex:0x5b4135f98af41f6b93bd3b41d59c900920dba7dc": {
+    "_ts": 1773175889.144408,
+    "no_data": true
+  },
+  "dex:0xdb1c299e0c37c39198686e5be4307557d54fef54": {
+    "_ts": 1773175891.382706,
+    "no_data": true
+  },
+  "dex:0x7d4b1a7d7f6ac9d91977d33fa390f2342815a529": {
+    "_ts": 1773175893.726348,
+    "no_data": true
+  },
+  "dex:0x1513afc53db3a860face4dd8f59b23a2843f0098": {
+    "_ts": 1773175895.981547,
+    "no_data": true
+  },
+  "dex:0x230e1fc28e63f10627af24bce3efd7f8600b631a": {
+    "_ts": 1773175898.241537,
+    "no_data": true
+  },
+  "dex:0xc796e499cc8f599a2a8280825d8bda92f7a895e0": {
+    "_ts": 1773175900.5336242,
+    "pair_address": "0x932a65f4E1F12c969F0e0636097e094d69a89aC3",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "BRO",
+    "price_usd": 0.0008834,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 4.43,
+    "price_change_24h": 11.48,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 910.94,
+    "volume_24h": 2527.75,
+    "liquidity_usd": 152274.86,
+    "liquidity_base": 86182969.0,
+    "market_cap": 705593.0,
+    "fdv": 869109.0,
+    "pair_created_at": 1733665489000,
+    "txns_24h_buys": 8,
+    "txns_24h_sells": 19,
+    "info_websites": [
+      "https://neurobro.ai/",
+      "https://neurobro.gitbook.io/neuro.bro",
+      "https://www.tiktok.com/@0xneurobro?_t=8rqeq1epfra&_r=1",
+      "https://www.youtube.com/@0xNeurobro?sub_confirmation=1",
+      "https://drive.google.com/file/d/1bYpSioNPVpK-UdeX2Zma7gu8vpx8IZSj/view?usp=sharing"
+    ],
+    "info_socials": [
+      "https://x.com/0xNeurobro",
+      "https://t.me/Neurobro_Official"
+    ]
+  },
+  "gp:0xc796e499cc8f599a2a8280825d8bda92f7a895e0": {
+    "_ts": 1773175903.26048,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 119495,
+    "lp_holder_count": 2,
+    "lp_total_supply": 0.000922643853282511,
+    "creator_address": "0xf0df1692266ce7704f932f1a2801ab903151bf38",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.5858095676745242,
+    "lp_locked_pct": 1.083841e-12,
+    "total_supply": 993024099.4301221
+  },
+  "alchemy:0xf0df1692266ce7704f932f1a2801ab903151bf38": {
+    "_ts": 1773175904.618816,
+    "creator_eth_balance": 3.5399653027258e-05,
+    "creator_tx_count": 8,
+    "creator_token_interactions": 4
+  },
+  "dex:0x7bae408204d2dde7b999b226899f5ab5f839cd99": {
+    "_ts": 1773175904.795663,
+    "no_data": true
+  },
+  "dex:0x285828c475d71e73b0b45216742ff0789446af96": {
+    "_ts": 1773175907.016337,
+    "no_data": true
+  },
+  "dex:0x13ebaabc12c9082518a12c67088d3b8b81bb40c2": {
+    "_ts": 1773175909.296989,
+    "no_data": true
+  },
+  "dex:0x73cb6d0f41baaafbcea8f2e2cfa7e3029587ece4": {
+    "_ts": 1773175911.600778,
+    "no_data": true
+  },
+  "dex:0xdc885cd2a6af0a6460cfbe3ebfb8f95beb95966d": {
+    "_ts": 1773175913.7977831,
+    "no_data": true
+  },
+  "dex:0xb32df383149ee4e6388fcd5c423c57e5c6117f3d": {
+    "_ts": 1773175915.973176,
+    "no_data": true
+  },
+  "dex:0x815269d17c10f0f3df7249370e0c1b9efe781aa8": {
+    "_ts": 1773175918.28353,
+    "pair_address": "0xc5D0305435B1389EdAe6babd9260b1a5c19f1606",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "SANTA",
+    "price_usd": 0.001181,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 2.75,
+    "price_change_24h": 10.02,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 2443.08,
+    "volume_24h": 8621.93,
+    "liquidity_usd": 188356.57,
+    "liquidity_base": 79717154.0,
+    "market_cap": 1160533.0,
+    "fdv": 1160533.0,
+    "pair_created_at": 1734948621000,
+    "txns_24h_buys": 31,
+    "txns_24h_sells": 48,
+    "info_websites": [
+      "https://santagent.xyz/",
+      "https://santagent.xyz/blog"
+    ],
+    "info_socials": [
+      "https://x.com/santavirtuals",
+      "https://t.me/SantaVirtuals"
+    ]
+  },
+  "gp:0x815269d17c10f0f3df7249370e0c1b9efe781aa8": {
+    "_ts": 1773175920.935194,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 37828,
+    "lp_holder_count": 5,
+    "lp_total_supply": 4.81785802284e-07,
+    "creator_address": "0x47af1cb1491a893ef6cfeb7c0c2c5c22ed055d4d",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.5762720028192039,
+    "lp_locked_pct": 2.075611185e-09,
+    "total_supply": 1000000000.0
+  },
+  "alchemy:0x47af1cb1491a893ef6cfeb7c0c2c5c22ed055d4d": {
+    "_ts": 1773175922.347677,
+    "creator_eth_balance": 1.1775689736e-08,
+    "creator_tx_count": 3329,
+    "creator_token_interactions": 62
+  },
+  "dex:0xb133fbcecdf1bd1135a3ee8e2b384c9c1cd939e6": {
+    "_ts": 1773175922.570665,
+    "no_data": true
+  },
+  "dex:0x478bcfb7bb1f0bacba9d986d7b1c67e46b94cf09": {
+    "_ts": 1773175924.790036,
+    "no_data": true
+  },
+  "dex:0xa2d4aec94ba0896d95ccc5451c9525b9ec0314de": {
+    "_ts": 1773175926.955116,
+    "pair_address": "0xB9F7fb70030988A1b84Db0c0C8115B1637C003F2",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "SS",
+    "price_usd": 8.988e-05,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": -2.15,
+    "price_change_24h": 16.34,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 53.58,
+    "volume_24h": 1004.99,
+    "liquidity_usd": 39045.36,
+    "liquidity_base": 217193072.0,
+    "market_cap": 69661.0,
+    "fdv": 89780.0,
+    "pair_created_at": 1749391265000,
+    "txns_24h_buys": 2,
+    "txns_24h_sells": 6,
+    "info_websites": [
+      "https://app.virtuals.io/virtuals/29113"
+    ],
+    "info_socials": [
+      "https://x.com/SniperSearch_AI",
+      "https://t.me/SniperSearch_AI"
+    ]
+  },
+  "gp:0xa2d4aec94ba0896d95ccc5451c9525b9ec0314de": {
+    "_ts": 1773175929.5980601,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 1344,
+    "lp_holder_count": 0,
+    "lp_total_supply": 0.0,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.7090902552345788,
+    "lp_locked_pct": 0.0,
+    "total_supply": 999050000.0
+  },
+  "dex:0x98cb2b87892e414e559f5419762a7cbcfd4498f4": {
+    "_ts": 1773175930.169953,
+    "no_data": true
+  },
+  "dex:0x83f123d89c1b09ec810e04f40537cf28bf360519": {
+    "_ts": 1773175932.3950999,
+    "no_data": true
+  },
+  "dex:0x7c1ac416c10b0189e0c580fd260e53086e4cad96": {
+    "_ts": 1773175934.657541,
+    "no_data": true
+  },
+  "dex:0x661300e1837259cc803697ce343cf3fd74352c41": {
+    "_ts": 1773175936.9549088,
+    "no_data": true
+  },
+  "dex:0x9f03b099c61fbb842a4d7cf6b30407e41a313f41": {
+    "_ts": 1773175939.1577542,
+    "no_data": true
+  },
+  "dex:0x795abcb2a9901f6ec510e18d40de08b84628c354": {
+    "_ts": 1773175941.401718,
+    "no_data": true
+  },
+  "dex:0x7da1e748a3f1bef46bb4f716e304c6cb9b88cb72": {
+    "_ts": 1773175943.778698,
+    "no_data": true
+  },
+  "dex:0xdb9aadfb63bea2a833c28f44724c854a2de0de47": {
+    "_ts": 1773175946.030803,
+    "no_data": true
+  },
+  "dex:0x3ceb70f4248bdc5e96c35fcef3f154ea36c38817": {
+    "_ts": 1773175948.251284,
+    "no_data": true
+  },
+  "dex:0x274008f19ae9acd6ba05143ecb5b9ba62a115a15": {
+    "_ts": 1773175950.49247,
+    "no_data": true
+  },
+  "dex:0x9d8c10e95434da0ee08d61ba2b40576da381d99d": {
+    "_ts": 1773175952.724619,
+    "no_data": true
+  },
+  "dex:0xa242748c61a932a50e441be78df3f95bdb48d2d4": {
+    "_ts": 1773175954.9671302,
+    "no_data": true
+  },
+  "dex:0xf869dc2b038bf1a2d6346392dc456f491dc4f8d1": {
+    "_ts": 1773175957.122964,
+    "no_data": true
+  },
+  "dex:0x4d82cadeb71c869fc3bea8246d3cfd10e891ce00": {
+    "_ts": 1773175959.281348,
+    "no_data": true
+  },
+  "dex:0xbebb72a9eb3ee1e8bb3710441d83af72a7b801d8": {
+    "_ts": 1773175961.480114,
+    "no_data": true
+  },
+  "dex:0xdf2fd7dd75143a5010f145440d49748275e362a3": {
+    "_ts": 1773175963.6341681,
+    "pair_address": "0xa563eaaB67A3178aCD1D47A34F38370e4C4911C4",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "WINT",
+    "price_usd": 0.0003373,
+    "price_change_5m": 0.0,
+    "price_change_1h": 11.13,
+    "price_change_6h": 16.95,
+    "price_change_24h": 18.42,
+    "volume_5m": 0.0,
+    "volume_1h": 2317.61,
+    "volume_6h": 4433.12,
+    "volume_24h": 9404.22,
+    "liquidity_usd": 84757.79,
+    "liquidity_base": 125615685.0,
+    "market_cap": 205232.0,
+    "fdv": 337369.0,
+    "pair_created_at": 1745496019000,
+    "txns_24h_buys": 25,
+    "txns_24h_sells": 22,
+    "info_websites": [
+      "https://whaleintel.ai",
+      "https://app.virtuals.io/virtuals/21708"
+    ],
+    "info_socials": [
+      "https://x.com/WhaleintelAI"
+    ]
+  },
+  "gp:0xdf2fd7dd75143a5010f145440d49748275e362a3": {
+    "_ts": 1773175966.153965,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 9055,
+    "lp_holder_count": 1,
+    "lp_total_supply": 8.599358931896e-06,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 1.2085985619726545,
+    "lp_locked_pct": 0,
+    "total_supply": 1000000000.0
+  },
+  "dex:0x3b81e9886271560d7eea4665315796f25fd3cac6": {
+    "_ts": 1773175966.636986,
+    "no_data": true
+  },
+  "dex:0xe6ab1cc1307b496748753e017f3dbb4d4378ca3f": {
+    "_ts": 1773175968.8302321,
+    "pair_address": "0xD71a1325Ba0E88049482f65877BFcA5e22677ccB",
+    "dex_id": "uniswap",
+    "chain_id": "base",
+    "base_token": "MANEKI",
+    "price_usd": 0.0001478,
+    "price_change_5m": 0.0,
+    "price_change_1h": 0.0,
+    "price_change_6h": 1.16,
+    "price_change_24h": 28.67,
+    "volume_5m": 0.0,
+    "volume_1h": 0.0,
+    "volume_6h": 104.32,
+    "volume_24h": 2439.84,
+    "liquidity_usd": 51064.8,
+    "liquidity_base": 172657811.0,
+    "market_cap": 130133.0,
+    "fdv": 147879.0,
+    "pair_created_at": 1747757209000,
+    "txns_24h_buys": 3,
+    "txns_24h_sells": 6,
+    "info_websites": [
+      "https://app.maneki.garden/",
+      "https://docs.maneki.garden/"
+    ],
+    "info_socials": [
+      "https://x.com/Maneki_DeFi",
+      "https://t.me/maneki_garden_chat",
+      "https://discord.com/invite/BzFpmzvGwz"
+    ]
+  },
+  "gp:0xe6ab1cc1307b496748753e017f3dbb4d4378ca3f": {
+    "_ts": 1773175971.3705852,
+    "is_honeypot": false,
+    "honeypot_with_same_creator": false,
+    "is_blacklisted": false,
+    "is_mintable": false,
+    "can_take_back_ownership": false,
+    "selfdestruct": false,
+    "external_call": false,
+    "is_open_source": true,
+    "is_proxy": false,
+    "owner_change_balance": false,
+    "hidden_owner": false,
+    "slippage_modifiable": false,
+    "buy_tax": 0.0,
+    "sell_tax": 0.0,
+    "holder_count": 18045,
+    "lp_holder_count": 0,
+    "lp_total_supply": 0.0,
+    "creator_address": "0x81f7ca6af86d1ca6335e44a2c28bc88807491415",
+    "creator_balance": 0.0,
+    "creator_percent": 0.0,
+    "owner_address": "0xe220329659d41b2a9f26e83816b424bdacf62567",
+    "owner_balance": 0.0,
+    "owner_percent": 0.0,
+    "top10_holder_pct": 0.717221000035724,
+    "lp_locked_pct": 0.0,
+    "total_supply": 999999997.0
+  },
+  "dex:0x41a854332a230fbeb01ef85213ac5aa39c5920b9": {
+    "_ts": 1773175971.8667781,
+    "no_data": true
+  },
+  "dex:0x0a1e07e1c79f3467a347ed6f3795ecc558acdf93": {
+    "_ts": 1773175974.038532,
+    "no_data": true
+  }
+}

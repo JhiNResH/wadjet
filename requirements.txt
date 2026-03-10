@@ -1,0 +1,19 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.0
+pydantic==2.11.1
+xgboost-cpu==3.2.0
+scikit-learn==1.8.0
+imbalanced-learn==0.14.1
+numpy==2.2.4
+pandas==2.2.3
+joblib==1.5.3
+httpx==0.28.1
+python-multipart==0.0.20
+
+# Phase 2: Agent Profiling + Monte Carlo
+psycopg2-binary>=2.9.9
+networkx>=3.6.0
+scipy>=1.13.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+schedule>=1.2.0

@@ -1,0 +1,44 @@
+{
+  "validation_date": "2026-03-10T16:06:23.369393Z",
+  "model_version": "1.1.0",
+  "threshold": 0.35,
+  "results": {
+    "true_positives": [
+      "Squid Game Token (SQUID)",
+      "AnubisDAO (ANKH)",
+      "Meerkat Finance",
+      "TurtleDex (TTDX)",
+      "Snowdog (SDOG) \u2014 OHM fork rug"
+    ],
+    "false_negatives": [],
+    "true_negatives": [
+      "Uniswap (UNI)",
+      "Chainlink (LINK)",
+      "Aave (AAVE)",
+      "Compound (COMP)",
+      "SushiSwap (SUSHI)"
+    ],
+    "false_positives": []
+  },
+  "cases_tested": {
+    "rugs": [
+      "Squid Game Token (SQUID)",
+      "AnubisDAO (ANKH)",
+      "Meerkat Finance",
+      "TurtleDex (TTDX)",
+      "Snowdog (SDOG) \u2014 OHM fork rug"
+    ],
+    "legit": [
+      "Uniswap (UNI)",
+      "Chainlink (LINK)",
+      "Aave (AAVE)",
+      "Compound (COMP)",
+      "SushiSwap (SUSHI)"
+    ]
+  },
+  "summary": {
+    "rug_recall": 1.0,
+    "legit_specificity": 1.0,
+    "overall": 1.0
+  }
+}
