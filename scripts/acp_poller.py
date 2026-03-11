@@ -240,13 +240,12 @@ def upsert_agents(agents_data: list[dict]) -> tuple[int, int]:
                 params["raw_metrics"] = json.dumps(merged_rm)
 
                 cur.execute(upsert_sql, params)
+                conn.commit()  # commit each agent individually to avoid bulk timeout
                 written += 1
             except Exception as e:
+                conn.rollback()
                 logger.warning(f"Upsert failed for {a['wallet_address'][:10]}…: {e}")
                 failed += 1
-                conn.rollback()
-
-        conn.commit()
         cur.close()
         conn.close()
 
@@ -285,12 +284,17 @@ async def run_acp_index(verbose: bool = False) -> dict:
     logger.info(f"Score distribution — high: {high_count}, med: {med_count}, low: {low_count}, avg: {avg_score}")
 
     written, failed = 0, 0
-    try:
-        written, failed = upsert_agents(scores)
-        logger.info(f"Upsert complete — written: {written}, failed: {failed}")
-    except Exception as e:
-        logger.error(f"Upsert step failed: {e}")
-        failed = len(scores)
+    # Split into UPSERT_BATCH_SIZE chunks to avoid statement timeouts on large datasets
+    for i in range(0, len(scores), UPSERT_BATCH_SIZE):
+        batch = scores[i:i + UPSERT_BATCH_SIZE]
+        try:
+            w, f = upsert_agents(batch)
+            written += w
+            failed += f
+        except Exception as e:
+            logger.error(f"Upsert batch {i//UPSERT_BATCH_SIZE} failed: {e}")
+            failed += len(batch)
+    logger.info(f"Upsert complete — written: {written}, failed: {failed}")
 
     duration = round(time.time() - start, 2)
     return {
