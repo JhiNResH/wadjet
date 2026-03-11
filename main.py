@@ -1281,6 +1281,40 @@ async def predict_agent(req: AgentPredictRequest):
     if zero_agent_jobs and zero_agent_trust:
         rug_score = max(rug_score, 40)
 
+    # ─── On-chain health override ────────────────────────────────────────────
+    # Tokens with strong on-chain fundamentals shouldn't be CRITICAL just
+    # because they lack ACP activity (e.g. IP/meme tokens on Virtuals).
+    # Override ONLY downgrades score — never upgrades a legitimately bad token.
+    _liq = dex_data.get("liquidity_usd", 0) or 0
+    _holders = gp_data.get("holder_count", 0) or 0
+    _top10 = gp_data.get("top10_holder_pct", 1.0) or 1.0
+    _honeypot = gp_data.get("is_honeypot", False)
+    _hidden = gp_data.get("hidden_owner", False)
+    _age_days_raw = 0.0
+    _created = req.pair_created_at or dex_data.get("pair_created_at")
+    if _created:
+        try:
+            import time as _t
+            _age_days_raw = max(0, (_t.time() * 1000 - float(_created)) / (1000 * 86400))
+        except Exception:
+            pass
+
+    # Strong health = high liquidity + many holders + distributed + no hard red flags
+    _has_hard_flags = _honeypot or _hidden or gp_data.get("slippage_modifiable", False)
+    _strong_health = (
+        _liq >= 500_000
+        and _holders >= 10_000
+        and _top10 <= 0.5
+        and _age_days_raw >= 30
+        and not _has_hard_flags
+    )
+    if _strong_health and rug_score > 40:
+        logger.info(
+            f"Health override: {req.token_address} score {rug_score}→{min(rug_score, 35)} "
+            f"(liq=${_liq:,.0f}, holders={_holders}, top10={_top10:.1%}, age={_age_days_raw:.0f}d)"
+        )
+        rug_score = min(rug_score, 35)  # Cap at medium
+
     rug_prob_final = rug_score / 100.0
     risk_level = (
         "critical" if rug_prob_final >= 0.7 else
