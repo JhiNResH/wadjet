@@ -17,3 +17,7 @@ scipy>=1.13.0
 requests>=2.31.0
 python-dotenv>=1.0.0
 schedule>=1.2.0
+
+# Phase 5: Merged from maiat-indexer — on-chain + price tracking
+web3>=7.0.0
+websockets>=12.0

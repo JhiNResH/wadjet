@@ -431,6 +431,7 @@ def run_daily_cron(limit: int = MAX_AGENTS) -> dict:
         "snapshots_stored":    snapshots_stored,
         "watchlist_added":     watchlist_added,
         "new_risk_flags":      new_flags,
+        "health_enriched":     health_enriched,
         "behavior_distribution": behavior_dist,
         "auto_outcomes":       auto_outcome_summary,
         "error_count":         len(errors),
@@ -455,6 +456,19 @@ def run_daily_cron(limit: int = MAX_AGENTS) -> dict:
     except Exception as e:
         logger.error(f"Auto-outcome reporter failed (non-fatal): {e}", exc_info=True)
         errors.append(f"auto_outcomes: {e}")
+
+    # ── Step 5c: Health signal enrichment ────────────────────────────────────
+    # Computes completion rate trends, LP drain rate, price volatility
+    # and writes healthSignals into agent_scores.raw_metrics
+    health_enriched = 0
+    if time_left() > 60:
+        try:
+            logger.info("Running health signal enrichment …")
+            health_enriched = _run_health_signals_enrichment()
+            logger.info(f"Health signals enriched: {health_enriched} agents")
+        except Exception as e:
+            logger.error(f"Health signal enrichment failed (non-fatal): {e}", exc_info=True)
+            errors.append(f"health_signals: {e}")
 
     # ── Step 6: write cron log ─────────────────────────────────────────────────
     write_cron_log(
@@ -496,6 +510,144 @@ def run_daily_cron(limit: int = MAX_AGENTS) -> dict:
     logger.info("=" * 60)
 
     return summary
+
+
+# ─── Health signal enrichment ────────────────────────────────────────────────
+
+def _run_health_signals_enrichment() -> int:
+    """
+    For every agent with liquiditySnapshots in raw_metrics, compute:
+      - Completion rate trend (improving / stable / declining / crashing)
+      - LP drain rate from snapshot history
+      - Price volatility (std dev of returns)
+
+    Writes healthSignals back into raw_metrics.
+    Returns number of agents enriched.
+    """
+    import json
+    import math
+    import psycopg2
+    import psycopg2.extras
+
+    db_url = os.environ["DATABASE_URL"]
+    enriched = 0
+
+    try:
+        conn = psycopg2.connect(db_url)
+        cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+
+        # Fetch agents that have liquiditySnapshots in raw_metrics
+        cur.execute("""
+            SELECT wallet_address, completion_rate, raw_metrics
+            FROM agent_scores
+            WHERE raw_metrics ? 'liquiditySnapshots'
+        """)
+        rows = cur.fetchall()
+        logger.info(f"Health enrichment: {len(rows)} agents with snapshot history")
+
+        upd_cur = conn.cursor()
+        for row in rows:
+            try:
+                rm = row["raw_metrics"] or {}
+                if isinstance(rm, str):
+                    rm = json.loads(rm)
+
+                snapshots = rm.get("liquiditySnapshots") or []
+                if not isinstance(snapshots, list) or len(snapshots) < 2:
+                    continue
+
+                current_rate = float(row["completion_rate"] or 0)
+                prev_rate = rm.get("previousCompletionRate")
+                if prev_rate is not None:
+                    prev_rate = float(prev_rate)
+
+                # ── Completion rate trend ─────────────────────────────────
+                if prev_rate is not None:
+                    delta = current_rate - prev_rate
+                    if delta >= 0.05:
+                        trend = "improving"
+                    elif delta >= -0.05:
+                        trend = "stable"
+                    elif delta >= -0.15:
+                        trend = "declining"
+                    else:
+                        trend = "crashing"
+                else:
+                    delta = 0.0
+                    trend = "unknown"
+
+                # ── LP drain rate ─────────────────────────────────────────
+                oldest_liq = float(snapshots[0].get("liquidity") or 0)
+                latest_liq = float(snapshots[-1].get("liquidity") or 0)
+                if oldest_liq > 0:
+                    drain_rate = (latest_liq - oldest_liq) / oldest_liq
+                else:
+                    drain_rate = 0.0
+
+                # ── Price volatility (std dev of returns) ─────────────────
+                prices = [
+                    float(s.get("priceUsd") or 0) for s in snapshots
+                ]
+                returns = []
+                for i in range(1, len(prices)):
+                    if prices[i - 1] > 0:
+                        returns.append((prices[i] - prices[i - 1]) / prices[i - 1])
+                if len(returns) >= 2:
+                    mean = sum(returns) / len(returns)
+                    variance = sum((r - mean) ** 2 for r in returns) / len(returns)
+                    volatility = math.sqrt(variance)
+                else:
+                    volatility = 0.0
+
+                # ── Score modifier ────────────────────────────────────────
+                trend_modifier = {
+                    "improving": 3, "stable": 0, "declining": -5,
+                    "crashing": -10, "unknown": 0,
+                }[trend]
+                if drain_rate <= -0.5:
+                    drain_modifier = -10
+                elif drain_rate <= -0.2:
+                    drain_modifier = -5
+                else:
+                    drain_modifier = 0
+                if volatility > 0.5:
+                    vol_modifier = -8
+                elif volatility > 0.3:
+                    vol_modifier = -5
+                elif volatility > 0.15:
+                    vol_modifier = -2
+                else:
+                    vol_modifier = 0
+                total_modifier = trend_modifier + drain_modifier + vol_modifier
+
+                rm["healthSignals"] = {
+                    "completionTrend": trend,
+                    "completionDelta": round(delta, 4),
+                    "lpDrainRate": round(drain_rate, 4),
+                    "volatility": round(volatility, 4),
+                    "totalModifier": total_modifier,
+                    "computedAt": datetime.now(timezone.utc).isoformat(),
+                }
+
+                upd_cur.execute("""
+                    UPDATE agent_scores
+                    SET raw_metrics = %s::jsonb, updated_at = NOW()
+                    WHERE wallet_address = %s
+                """, (json.dumps(rm), row["wallet_address"]))
+                enriched += 1
+
+            except Exception as e:
+                logger.debug(f"Health enrichment failed for {row['wallet_address'][:10]}…: {e}")
+
+        conn.commit()
+        upd_cur.close()
+        cur.close()
+        conn.close()
+
+    except Exception as e:
+        logger.error(f"Health enrichment DB error: {e}")
+
+    return enriched
 
 
 # ─── Alchemy client patcher ──────────────────────────────────────────────────

@@ -184,6 +184,30 @@ async def startup():
     if not loaded:
         logger.error("❌ Model not loaded — /predict will return 503")
 
+    # ── Background indexer pollers ────────────────────────────────────────────
+    # These run continuously alongside the FastAPI server.
+    # Each is independently triggerable via /cron/* endpoints too.
+    try:
+        from scripts.acp_poller import acp_poll_loop
+        asyncio.create_task(acp_poll_loop(interval=300))   # 5 min
+        logger.info("✅ ACP poll loop started (5 min interval)")
+    except Exception as e:
+        logger.warning(f"ACP poll loop failed to start (non-fatal): {e}")
+
+    try:
+        from scripts.price_tracker import price_track_loop
+        asyncio.create_task(price_track_loop(interval=900))  # 15 min
+        logger.info("✅ Price track loop started (15 min interval)")
+    except Exception as e:
+        logger.warning(f"Price track loop failed to start (non-fatal): {e}")
+
+    try:
+        from scripts.chain_listener import chain_listener_loop
+        asyncio.create_task(chain_listener_loop())
+        logger.info("✅ Chain listener loop started")
+    except Exception as e:
+        logger.warning(f"Chain listener loop failed to start (non-fatal): {e}")
+
 
 # ─── Request / Response schemas ────────────────────────────────────────────
 class PredictRequest(BaseModel):
@@ -2233,6 +2257,190 @@ async def cron_status(
     return {
         "running": _cron_state["running"],
         "last_result": _cron_state["last_result"],
+        "checked_at": datetime.utcnow().isoformat() + "Z",
+    }
+
+
+# ─── Indexer Cron Endpoints (merged from maiat-indexer) ──────────────────────
+
+_indexer_state: dict = {
+    "acp_running": False,
+    "virtuals_running": False,
+    "prices_running": False,
+    "last_acp": None,
+    "last_virtuals": None,
+    "last_prices": None,
+}
+
+
+@app.post("/cron/index-agents", tags=["Indexer"])
+async def trigger_acp_index(
+    background_tasks: BackgroundTasks,
+    x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
+):
+    """
+    Trigger ACP agent indexing (polls acpx.virtuals.io, upserts agent_scores).
+
+    Protected by X-Cron-Api-Key. Returns immediately; runs in background.
+    Recommended schedule: every 5 minutes.
+    """
+    _assert_cron_key(x_cron_api_key)
+
+    if _indexer_state["acp_running"]:
+        return {
+            "status": "already_running",
+            "message": "ACP indexer already in progress.",
+            "triggered_at": datetime.utcnow().isoformat() + "Z",
+        }
+
+    def _run_acp_bg():
+        import asyncio as _asyncio
+        import sys as _sys
+        _sys.path.insert(0, str(BASE_DIR))
+        try:
+            from scripts.acp_poller import run_acp_index
+            result = _asyncio.run(run_acp_index())
+            _indexer_state["acp_running"] = False
+            _indexer_state["last_acp"] = result
+        except Exception as e:
+            logger.error(f"ACP index background failed: {e}", exc_info=True)
+            _indexer_state["acp_running"] = False
+            _indexer_state["last_acp"] = {
+                "status": "failed", "error": str(e),
+                "completed_at": datetime.utcnow().isoformat() + "Z",
+            }
+
+    _indexer_state["acp_running"] = True
+    background_tasks.add_task(_run_acp_bg)
+    return {
+        "status": "triggered",
+        "message": "ACP agent indexing started.",
+        "triggered_at": datetime.utcnow().isoformat() + "Z",
+        "poll_url": "/indexer/status",
+    }
+
+
+@app.post("/cron/sync-virtuals", tags=["Indexer"])
+async def trigger_virtuals_sync(
+    background_tasks: BackgroundTasks,
+    x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
+):
+    """
+    Trigger Virtuals Protocol token sync (fills token_address for matched agents).
+
+    Protected by X-Cron-Api-Key. Returns immediately; runs in background.
+    Recommended schedule: daily or on-demand.
+    """
+    _assert_cron_key(x_cron_api_key)
+
+    if _indexer_state["virtuals_running"]:
+        return {
+            "status": "already_running",
+            "message": "Virtuals sync already in progress.",
+            "triggered_at": datetime.utcnow().isoformat() + "Z",
+        }
+
+    def _run_virtuals_bg():
+        import asyncio as _asyncio
+        import sys as _sys
+        _sys.path.insert(0, str(BASE_DIR))
+        try:
+            from scripts.virtuals_sync import run_virtuals_sync
+            result = _asyncio.run(run_virtuals_sync())
+            _indexer_state["virtuals_running"] = False
+            _indexer_state["last_virtuals"] = result
+        except Exception as e:
+            logger.error(f"Virtuals sync background failed: {e}", exc_info=True)
+            _indexer_state["virtuals_running"] = False
+            _indexer_state["last_virtuals"] = {
+                "status": "failed", "error": str(e),
+                "completed_at": datetime.utcnow().isoformat() + "Z",
+            }
+
+    _indexer_state["virtuals_running"] = True
+    background_tasks.add_task(_run_virtuals_bg)
+    return {
+        "status": "triggered",
+        "message": "Virtuals token sync started.",
+        "triggered_at": datetime.utcnow().isoformat() + "Z",
+        "poll_url": "/indexer/status",
+    }
+
+
+@app.post("/cron/track-prices", tags=["Indexer"])
+async def trigger_price_tracking(
+    background_tasks: BackgroundTasks,
+    x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
+):
+    """
+    Trigger DexScreener price tracking for all agents with token_address.
+    Detects crashes (price_change_24h < -30%) and stores price snapshots.
+
+    Protected by X-Cron-Api-Key. Returns immediately; runs in background.
+    Recommended schedule: every 15 minutes.
+    """
+    _assert_cron_key(x_cron_api_key)
+
+    if _indexer_state["prices_running"]:
+        return {
+            "status": "already_running",
+            "message": "Price tracking already in progress.",
+            "triggered_at": datetime.utcnow().isoformat() + "Z",
+        }
+
+    def _run_prices_bg():
+        import asyncio as _asyncio
+        import sys as _sys
+        _sys.path.insert(0, str(BASE_DIR))
+        try:
+            from scripts.price_tracker import run_price_tracking
+            result = _asyncio.run(run_price_tracking())
+            _indexer_state["prices_running"] = False
+            _indexer_state["last_prices"] = result
+        except Exception as e:
+            logger.error(f"Price tracking background failed: {e}", exc_info=True)
+            _indexer_state["prices_running"] = False
+            _indexer_state["last_prices"] = {
+                "status": "failed", "error": str(e),
+                "completed_at": datetime.utcnow().isoformat() + "Z",
+            }
+
+    _indexer_state["prices_running"] = True
+    background_tasks.add_task(_run_prices_bg)
+    return {
+        "status": "triggered",
+        "message": "Price tracking started.",
+        "triggered_at": datetime.utcnow().isoformat() + "Z",
+        "poll_url": "/indexer/status",
+    }
+
+
+@app.get("/indexer/status", tags=["Indexer"])
+async def indexer_status():
+    """
+    Combined status of all background indexer pollers.
+    Shows last run results and whether each poller is currently running.
+    """
+    from scripts.chain_listener import get_status as chain_status
+    try:
+        chain = chain_status()
+    except Exception:
+        chain = {"error": "chain listener not available"}
+
+    return {
+        "acp_poller": {
+            "running": _indexer_state["acp_running"],
+            "last_result": _indexer_state["last_acp"],
+        },
+        "virtuals_sync": {
+            "running": _indexer_state["virtuals_running"],
+            "last_result": _indexer_state["last_virtuals"],
+        },
+        "price_tracker": {
+            "running": _indexer_state["prices_running"],
+            "last_result": _indexer_state["last_prices"],
+        },
+        "chain_listener": chain,
         "checked_at": datetime.utcnow().isoformat() + "Z",
     }
 
