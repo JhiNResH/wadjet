@@ -2489,6 +2489,188 @@ async def indexer_status():
     }
 
 
+# ─── Feedback Loop (Protocol → Wadjet) ────────────────────────────────────────
+
+class OutcomeFeedback(BaseModel):
+    """Single outcome record pushed from Protocol after trust_swap execution."""
+    agent_address: str
+    outcome: str  # success | failure | partial | expired
+    trust_score_at_check: Optional[int] = None
+    new_trust_score: Optional[int] = None
+    job_id: Optional[str] = None
+    token_address: Optional[str] = None
+    actual_amount_out: Optional[str] = None
+    recorded_at: Optional[str] = None
+
+
+class OutcomeFeedbackBatch(BaseModel):
+    """Batch of outcomes pushed from Protocol."""
+    outcomes: list[OutcomeFeedback]
+    source: str = "maiat-protocol"
+
+
+@app.post("/feedback/outcomes", tags=["Feedback"])
+async def receive_outcome_feedback(
+    batch: OutcomeFeedbackBatch,
+    x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
+):
+    """
+    Receive verified outcome data from Maiat Protocol.
+    Stores feedback in outcome_feedback table for model retraining.
+
+    This closes the loop: Protocol records outcomes → pushes here →
+    Wadjet uses them as ground truth labels for XGBoost retraining.
+
+    Protected by X-Cron-Api-Key header.
+    """
+    _assert_cron_key(x_cron_api_key)
+
+    if not batch.outcomes:
+        return {"stored": 0, "message": "Empty batch"}
+
+    import psycopg2
+
+    db_url = _get_db_url()
+    stored = 0
+    errors = 0
+
+    try:
+        conn = psycopg2.connect(db_url)
+        conn.autocommit = False
+        cur = conn.cursor()
+
+        # Ensure table exists
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS outcome_feedback (
+                id SERIAL PRIMARY KEY,
+                agent_address TEXT NOT NULL,
+                outcome TEXT NOT NULL,
+                trust_score_at_check INT,
+                new_trust_score INT,
+                job_id TEXT,
+                token_address TEXT,
+                actual_amount_out TEXT,
+                source TEXT DEFAULT 'maiat-protocol',
+                recorded_at TIMESTAMPTZ,
+                ingested_at TIMESTAMPTZ DEFAULT NOW(),
+                used_in_retrain BOOLEAN DEFAULT FALSE
+            )
+        """)
+        cur.execute("""
+            CREATE INDEX IF NOT EXISTS idx_outcome_feedback_agent
+            ON outcome_feedback(agent_address)
+        """)
+        cur.execute("""
+            CREATE INDEX IF NOT EXISTS idx_outcome_feedback_retrain
+            ON outcome_feedback(used_in_retrain) WHERE NOT used_in_retrain
+        """)
+
+        for o in batch.outcomes:
+            try:
+                cur.execute("""
+                    INSERT INTO outcome_feedback
+                        (agent_address, outcome, trust_score_at_check, new_trust_score,
+                         job_id, token_address, actual_amount_out, source, recorded_at)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT DO NOTHING
+                """, (
+                    o.agent_address.lower(),
+                    o.outcome,
+                    o.trust_score_at_check,
+                    o.new_trust_score,
+                    o.job_id,
+                    o.token_address,
+                    o.actual_amount_out,
+                    batch.source,
+                    o.recorded_at,
+                ))
+                stored += 1
+            except Exception as e:
+                logger.warning(f"Feedback insert failed for {o.agent_address}: {e}")
+                errors += 1
+
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        logger.error(f"Feedback batch failed: {e}", exc_info=True)
+        return {"stored": stored, "errors": errors, "error": str(e)}
+
+    # Update agent_scores with latest outcome signal (async, best-effort)
+    try:
+        conn = psycopg2.connect(db_url)
+        cur = conn.cursor()
+        for o in batch.outcomes:
+            label = 1.0 if o.outcome == "success" else (0.5 if o.outcome == "partial" else 0.0)
+            # Blend into existing trust_score: 80% existing + 20% outcome signal
+            cur.execute("""
+                UPDATE agent_scores
+                SET trust_score = GREATEST(0, LEAST(100,
+                    ROUND(trust_score * 0.8 + %s * 100 * 0.2)
+                )),
+                updated_at = NOW()
+                WHERE wallet_address = %s
+            """, (label, o.agent_address.lower()))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        logger.warning(f"Agent score update from feedback failed: {e}")
+
+    logger.info(f"Feedback ingested: {stored} stored, {errors} errors from {batch.source}")
+    return {
+        "stored": stored,
+        "errors": errors,
+        "source": batch.source,
+        "message": f"Ingested {stored} outcomes for retraining pipeline",
+    }
+
+
+@app.get("/feedback/stats", tags=["Feedback"])
+async def feedback_stats(
+    x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
+):
+    """Stats on outcome feedback received and pending retraining."""
+    _assert_cron_key(x_cron_api_key)
+
+    import psycopg2
+    db_url = _get_db_url()
+    try:
+        conn = psycopg2.connect(db_url)
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT
+                COUNT(*) as total,
+                COUNT(*) FILTER (WHERE NOT used_in_retrain) as pending_retrain,
+                COUNT(*) FILTER (WHERE outcome = 'success') as success_count,
+                COUNT(*) FILTER (WHERE outcome = 'failure') as failure_count,
+                COUNT(*) FILTER (WHERE outcome = 'partial') as partial_count,
+                COUNT(*) FILTER (WHERE outcome = 'expired') as expired_count,
+                COUNT(DISTINCT agent_address) as unique_agents
+            FROM outcome_feedback
+        """)
+        row = cur.fetchone()
+        cur.close()
+        conn.close()
+
+        if not row:
+            return {"total": 0}
+
+        return {
+            "total": row[0],
+            "pending_retrain": row[1],
+            "outcomes": {
+                "success": row[2],
+                "failure": row[3],
+                "partial": row[4],
+                "expired": row[5],
+            },
+            "unique_agents": row[6],
+        }
+    except Exception as e:
+        return {"error": str(e), "message": "outcome_feedback table may not exist yet"}
+
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":

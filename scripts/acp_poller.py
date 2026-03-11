@@ -179,6 +179,9 @@ def upsert_agents(agents_data: list[dict]) -> tuple[int, int]:
         conn.autocommit = False
         cur = conn.cursor()
 
+        # Set statement timeout to 30s to avoid hanging on bloated indexes
+        cur.execute("SET statement_timeout = '30s'")
+
         # Batch-fetch existing rawMetrics for these wallets
         wallets = [a["wallet_address"] for a in agents_data if a["wallet_address"]]
         existing_map: dict[str, dict] = {}
