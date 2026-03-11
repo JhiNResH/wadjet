@@ -19,6 +19,7 @@ COPY simulator/ simulator/
 COPY profiler/ profiler/
 COPY scripts/ scripts/
 COPY data/ data/
+COPY data_sources/ data_sources/
 
 # Expose default port (Railway overrides via $PORT)
 EXPOSE 8001

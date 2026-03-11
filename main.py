@@ -858,6 +858,18 @@ def _build_v2_feature_vector(dex: dict, gp: dict, acp: dict, req: AgentPredictRe
         1.0,                                 # is_virtuals_token
     ]
 
+    # ── Computed meta-features (data_completeness + is_ghost_agent) ────────
+    # Count how many V1 features have real (non-default) data
+    real_count = sum(1 for v in [
+        dex.get("volume_24h"), dex.get("liquidity_usd"), dex.get("price_change_24h"),
+        gp.get("top10_holder_pct"), gp.get("lp_locked_pct"), gp.get("holder_count"),
+        gp.get("is_open_source"), gp.get("buy_tax"), gp.get("sell_tax"),
+        gp.get("creator_percent"), gp.get("owner_percent"),
+    ] if v is not None and v != 0)
+    data_completeness = real_count / 20.0
+    is_ghost = 1.0 if (total_jobs == 0 and comp_rate == 0) else 0.0
+    v_meta = [data_completeness, is_ghost]
+
     # ── Delta features from daily snapshots ────────────────────────────────
     deltas = _fetch_delta_features(req.token_address)
     v_delta = [
@@ -868,7 +880,7 @@ def _build_v2_feature_vector(dex: dict, gp: dict, acp: dict, req: AgentPredictRe
         deltas["creator_percent_delta_1d"],
     ]
 
-    return np.array(v1 + v2 + v_delta, dtype=np.float32)
+    return np.array(v1 + v_meta + v2 + v_delta, dtype=np.float32)
 
 
 def _compute_agent_risk_signals(dex: dict, gp: dict, acp: dict, age_days: float) -> list[AgentRiskSignal]:
