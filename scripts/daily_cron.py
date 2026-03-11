@@ -432,11 +432,29 @@ def run_daily_cron(limit: int = MAX_AGENTS) -> dict:
         "watchlist_added":     watchlist_added,
         "new_risk_flags":      new_flags,
         "behavior_distribution": behavior_dist,
+        "auto_outcomes":       auto_outcome_summary,
         "error_count":         len(errors),
         "errors":              errors[:10],    # cap for API response
         "duration_seconds":    round(duration, 2),
         "completed_at":        datetime.now(timezone.utc).isoformat(),
     }
+
+    # ── Step 5b: Auto-outcome reporter ────────────────────────────────────────
+    auto_outcome_summary: dict = {}
+    try:
+        from scripts.auto_outcomes import run_auto_outcomes
+        logger.info("Running auto-outcome reporter …")
+        auto_outcome_summary = run_auto_outcomes()
+        logger.info(
+            f"Auto-outcomes: processed={auto_outcome_summary.get('processed', 0)} "
+            f"scam={auto_outcome_summary.get('outcomes', {}).get('scam', 0)} "
+            f"failure={auto_outcome_summary.get('outcomes', {}).get('failure', 0)} "
+            f"success={auto_outcome_summary.get('outcomes', {}).get('success', 0)} "
+            f"expired={auto_outcome_summary.get('outcomes', {}).get('expired', 0)}"
+        )
+    except Exception as e:
+        logger.error(f"Auto-outcome reporter failed (non-fatal): {e}", exc_info=True)
+        errors.append(f"auto_outcomes: {e}")
 
     # ── Step 6: write cron log ─────────────────────────────────────────────────
     write_cron_log(
@@ -452,6 +470,7 @@ def run_daily_cron(limit: int = MAX_AGENTS) -> dict:
             "snapshots_stored":   snapshots_stored,
             "watchlist_added":    watchlist_added,
             "behavior_distribution": behavior_dist,
+            "auto_outcomes":      auto_outcome_summary,
         },
     )
 
