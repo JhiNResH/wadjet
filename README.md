@@ -1,212 +1,247 @@
-# Wadjet — Risk Intelligence System
+# Wadjet 🐍
 
-Wadjet is the risk intelligence layer of Maiat Protocol. It combines ML-powered rug detection (Phase 1) with agent behavior profiling and Monte Carlo stress simulation (Phase 2).
+**Predictive risk intelligence for the agent economy.**
+
+Wadjet is the unified data + ML engine behind [Maiat Protocol](https://maiat.io). It predicts rug pulls, monitors on-chain behavior in real-time, and closes the feedback loop automatically.
+
+**Live:** `https://wadjet-production.up.railway.app`  
+**Docs:** `https://wadjet-production.up.railway.app/docs` (Swagger UI)
+
+---
+
+## What It Does
+
+### Data Collection
+| Module | Frequency | Source |
+|--------|-----------|--------|
+| ACP Poller | Every 5 min | Virtuals ACP API |
+| Price Tracker | Every 15 min | DexScreener |
+| Chain Listener | Real-time | Base WSS (EAS + ERC-8004 events) |
+| Virtuals Sync | Daily | Virtuals Protocol API |
+
+### Analysis
+| Module | What It Does |
+|--------|-------------|
+| **Predictor** | XGBoost rug detection — 98% accuracy, 50 features, trained on 18K+ real tokens |
+| **Profiler** | Agent behavior classification (wash trading, ghost, rug deployer) |
+| **Simulator** | Monte Carlo stress testing across 7 market crash scenarios |
+| **Sentinel** | Two-stage real-time monitoring: GoPlus scan → sell pattern tracking → confirmed dump |
+
+### Feedback Loop
+| Module | What It Does |
+|--------|-------------|
+| **Auto-Outcomes** | Auto-classifies query results after 7 days (success/failure/scam) via DexScreener |
+| **Health Signals** | Completion rate trends, LP drain rate, price volatility |
+
+---
+
+## Quick Start
+
+### Predict rug risk for any token
+
+```bash
+curl -X POST https://wadjet-production.up.railway.app/predict/agent \
+  -H "Content-Type: application/json" \
+  -d '{"token_address": "0xYourTokenAddress"}'
+```
+
+Response:
+```json
+{
+  "rug_score": 73,
+  "risk_level": "critical",
+  "behavior_class": "rug_pull",
+  "dex_signals": { "price_usd": 0.0000072, "liquidity_usd": 10414, "holder_count": 382 },
+  "goplus_signals": { "is_honeypot": false, "top10_holder_pct": 0.88, "lp_locked_pct": 0 },
+  "risk_signals": [
+    { "signal": "EXTREME_CONCENTRATION", "severity": "critical", "detail": "Top 10 holders own 88% of supply" },
+    { "signal": "LP_UNLOCKED", "severity": "high", "detail": "0% of LP locked" }
+  ],
+  "summary": "🔴 HIGH RUG RISK (73%). Do NOT interact with this token."
+}
+```
+
+### Simple prediction (with known features)
+
+```bash
+curl -X POST https://wadjet-production.up.railway.app/predict \
+  -H "Content-Type: application/json" \
+  -d '{"trust_score": 0.8, "total_jobs": 0.5, "completion_rate": 0.9}'
+```
+
+---
+
+## API Reference
+
+### Prediction
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/predict` | Predict rug probability from known features |
+| `POST` | `/predict/agent` | Auto-fetch all data by token address (DexScreener + GoPlus + Maiat DB) |
+| `GET` | `/wadjet/{address}` | Full risk profile + Monte Carlo simulation results |
+| `GET` | `/wadjet/{address}/scenarios` | Detailed scenario breakdowns |
+| `GET` | `/wadjet/portfolio` | Portfolio risk assessment (`?agents=0x...,0x...`) |
+| `GET` | `/wadjet/cascade/{address}` | Cascade/contagion map for an agent |
+| `GET` | `/wadjet/clusters` | All detected behavioral clusters |
+
+### Sentinel (Real-time Monitoring)
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/sentinel/scan` | Trigger Stage 1 GoPlus batch scan (🔑 X-Cron-Api-Key) |
+| `POST` | `/sentinel/check-watchlist` | Trigger Stage 2 sell pattern check (🔑) |
+| `GET` | `/sentinel/alerts` | List alerts (`?severity=critical&limit=10`) |
+| `GET` | `/sentinel/alerts/{token}` | Alerts for a specific token |
+| `GET` | `/sentinel/status` | Scan stats + watchlist count |
+
+### Watchlist
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/watchlist` | All tokens on watchlist |
+| `GET` | `/watchlist/{token}` | Watchlist entry for a specific token |
+
+### Indexer / Data Collection
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/cron/index-agents` | Trigger ACP agent indexing (🔑) |
+| `POST` | `/cron/sync-virtuals` | Trigger Virtuals token sync (🔑) |
+| `POST` | `/cron/track-prices` | Trigger DexScreener price tracking (🔑) |
+| `POST` | `/cron/run-daily` | Full daily cron (profiling + simulation + outcomes) (🔑) |
+| `POST` | `/cron/auto-outcomes` | Backfill unreported query outcomes (🔑) |
+| `GET` | `/indexer/status` | Status of all background pollers |
+
+### System
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/health` | Health check + model status |
+| `GET` | `/model-info` | Model metadata and accuracy metrics |
+
+🔑 = Requires `X-Cron-Api-Key` header
+
+---
+
+## Model Details
+
+### V2 Agent-Enhanced XGBoost
+
+- **Training data:** 18,296 real Uniswap V2 tokens + Virtuals agent tokens
+- **Features:** 50 (20 base + 2 meta + 23 Virtuals-specific + 5 dynamic deltas)
+- **Accuracy:** 98.1% | **Recall:** 98.8% | **False Negative:** 1.2%
+- **Ensemble:** `max(ML_score, rule_based_score)` — prefers false positive over false negative
+
+### Key Features
+| Category | Features |
+|----------|----------|
+| On-chain | holder_concentration, liquidity, LP lock ratio, creator tx pattern |
+| DexScreener | price_change, volume, buy/sell ratio, market cap |
+| GoPlus | honeypot, mintable, hidden_owner, sell_tax, slippage_modifiable |
+| ACP Behavioral | trust_score, total_jobs, completion_rate, unique_buyers |
+| Meta | data_completeness, is_ghost_agent |
+| Dynamic | holder_delta_1d, liquidity_delta_1d, volume_delta_1d, price_delta_1d, creator_percent_delta_1d |
+
+### Scoring
+
+```
+rug_score = max(ML_prediction, rule_based_score) + goplus_delta
+```
+
+| Score | Risk Level | Action |
+|-------|-----------|--------|
+| 0-24 | 🟢 LOW | Proceed |
+| 25-49 | 🟡 MEDIUM | Caution |
+| 50-69 | 🔴 HIGH | Avoid |
+| 70-100 | ⛔ CRITICAL | Do not interact |
+
+### Sentinel Two-Stage Alert System
+
+```
+Stage 1 (hourly): GoPlus batch scan all tokens
+  → Flag suspicious → add to watchlist
+
+Stage 2 (every 10 min): Track watchlist tokens
+  → SELL_SIGNAL → DUMP_PATTERN → CONFIRMED_DUMP → ABANDONMENT
+  → Only escalate rug_score after behavioral confirmation
+```
+
+Single signals ≠ rug. The system requires behavioral sequence matching before raising alerts.
 
 ---
 
 ## Architecture
 
 ```
-wadjet/
-├── main.py                     # FastAPI service (all endpoints)
-├── requirements.txt
-├── Dockerfile
-│
-├── profiler/                   # Phase 2: Agent Profiling
-│   ├── __init__.py
-│   ├── alchemy_client.py       # Alchemy API (Base chain tx history)
-│   ├── classifier.py           # Behavior type classification
-│   ├── graph_builder.py        # Tx relationship graph + cluster detection
-│   └── profile_builder.py      # Orchestrates profiling pipeline
-│
-├── simulator/                  # Phase 2: Monte Carlo Engine
-│   ├── __init__.py
-│   ├── scenarios.py            # 7 stress scenarios (S1–S7)
-│   ├── agent_model.py          # Per-behavior stress response models
-│   ├── monte_carlo.py          # MC runner + resilience scoring
-│   └── scheduler.py            # Daily cron: top 500 agents
-│
-├── db/                         # Database layer
-│   ├── __init__.py
-│   └── supabase_client.py      # PostgreSQL connection + CRUD
-│
-├── models/                     # Phase 1: XGBoost model artifacts
-│   ├── wadjet_xgb.joblib
-│   ├── wadjet_xgb.onnx
-│   └── model_metadata.json
-│
-├── scripts/                    # Training + data generation
-│   ├── train_model.py
-│   └── generate_dataset.py
-│
-└── data/
-    └── rug_pull_dataset.csv
+                    External APIs
+                   ┌─────────────────┐
+                   │ Virtuals ACP    │ ← 5min poll
+                   │ DexScreener     │ ← 15min poll
+                   │ GoPlus          │ ← hourly scan
+                   │ Base WSS        │ ← real-time
+                   └────────┬────────┘
+                            │
+                   ┌────────▼────────┐
+                   │     Wadjet      │
+                   │   (FastAPI)     │
+                   │                 │
+                   │ ┌─────────────┐ │
+                   │ │  Predictor  │ │ XGBoost V2
+                   │ │  Profiler   │ │ Clustering
+                   │ │  Simulator  │ │ Monte Carlo
+                   │ │  Sentinel   │ │ 2-stage alerts
+                   │ └─────────────┘ │
+                   └────────┬────────┘
+                            │
+                   ┌────────▼────────┐
+                   │    Supabase     │
+                   │                 │
+                   │ agent_scores    │
+                   │ wadjet_alerts   │
+                   │ wadjet_watchlist│
+                   │ query_logs      │
+                   └─────────────────┘
+                            │
+                   ┌────────▼────────┐
+                   │  Maiat Protocol │
+                   │   (Vercel)      │
+                   │  app.maiat.io   │
+                   └─────────────────┘
 ```
-
----
-
-## Phase 2 Components
-
-### Agent Profile Builder
-
-Reads agents from Supabase `agentScore` table → fetches Base chain tx history from Alchemy → builds behavior profiles.
-
-**Behavior Types:**
-
-| Type | Signal | Risk |
-|------|--------|------|
-| `diamond_hands` | Held through >20% dips without selling | Low |
-| `paper_hands` | Sold within hours of >10% dip | High |
-| `market_maker` | Consistent two-sided activity, many counterparties | Medium |
-| `sniper` | Buys right after deployment, exits within hours | High |
-| `whale` | Top 5% by volume/holdings | Medium |
-| `bot` | Highly regular tx patterns, fixed intervals | Medium |
-| `follower` | Trades correlate with whale movements | High |
-| `rug_deployer` | Deployed tokens that went to zero | Critical |
-| `normal` | None of the above | Low |
-
-### Monte Carlo Simulation Engine
-
-Runs stress scenarios 50–100× with randomized parameters. Each round:
-1. Apply shock → agents react per behavior type
-2. Check dependency cascade (if dep fails, propagate shock)
-3. Apply recovery rate → advance to next round
-
-**Stress Scenarios:**
-
-| ID | Name | Shock | Factor |
-|----|------|-------|--------|
-| S1 | Token Crash | 50% price drop in 1h | price |
-| S2 | Whale Exit | Largest holder withdraws everything | liquidity |
-| S3 | Gas Spike | Gas 10× normal | gas |
-| S4 | Oracle Failure | Trust oracle offline 4h | oracle |
-| S5 | Mass Withdrawal | 30% of agents withdraw simultaneously | liquidity |
-| S6 | Counterparty Default | Major trading partner disappears | counterparty |
-| S7 | Regulatory Shock | Jurisdiction blocks agent trading | oracle |
-
-**Resilience Score:** 0 = fragile (fails every scenario), 1 = antifragile
-
-### Transaction Relationship Graph
-
-- **Cycle detection** → wash trading candidates
-- **Dependency chains** → A depends on B for 60% of liquidity
-- **Cluster detection** → hidden coordinated behavior via connected components
-
----
-
-## API Endpoints
-
-### Phase 1 (Existing)
-
-```
-POST /predict      — XGBoost rug pull prediction
-GET  /health       — Health check
-GET  /model-info   — Model metadata
-```
-
-### Phase 2 (New)
-
-```
-GET /wadjet/{address}
-    Full risk profile + Monte Carlo simulation results.
-    Auto-triggers simulation if not cached.
-
-GET /wadjet/{address}/scenarios
-    Detailed breakdown of all 7 stress scenarios.
-
-GET /wadjet/portfolio?agents=0x...,0x...
-    Portfolio risk assessment for up to 50 agents.
-    Returns avg resilience, fragile/robust counts, portfolio risk score.
-
-GET /wadjet/cascade/{address}
-    Cascade risk map:
-    - upstream_risks: which dependencies put this agent at risk
-    - downstream_impact: which agents this agent's failure would cascade to
-
-GET /wadjet/clusters
-    All detected hidden clusters with risk scores and member lists.
-```
-
----
-
-## Running
-
-### Start the API server
-
-```bash
-cd packages/wadjet
-uvicorn main:app --host 0.0.0.0 --port 8001 --reload
-```
-
-### Run profiling pipeline (once or manually)
-
-```bash
-cd packages/wadjet
-python -c "
-from db.supabase_client import ensure_schema
-from profiler.profile_builder import build_profiles
-ensure_schema()
-profiles = build_profiles(limit=500)
-print(f'Built {len(profiles)} profiles')
-"
-```
-
-### Run Monte Carlo simulation (once)
-
-```bash
-cd packages/wadjet
-python -c "
-from db.supabase_client import get_all_profiles
-from simulator.monte_carlo import run_all_simulations, print_simulation_summary
-from db.supabase_client import upsert_simulation_result
-
-profiles_raw = get_all_profiles(limit=100)
-profiles = [{'agent': p['address'], 'behavior_type': p['behavior_type'],
-              'risk_tolerance': p['risk_tolerance'], 'dependencies': p.get('dependencies', [])}
-            for p in profiles_raw]
-
-results = run_all_simulations(profiles, n_runs=50)
-print_simulation_summary(results)
-for r in results:
-    upsert_simulation_result(r, cache_hours=24)
-"
-```
-
-### Start daily scheduler (long-running)
-
-```bash
-cd packages/wadjet
-python -m simulator.scheduler
-```
-
----
-
-## Database Tables (Auto-created)
-
-| Table | Purpose |
-|-------|---------|
-| `wadjet_agent_profiles` | Behavior profiles per agent |
-| `wadjet_simulation_results` | Monte Carlo results, cached 24h |
-| `wadjet_tx_graph` | Agent-to-agent fund flow graph |
-| `wadjet_clusters` | Hidden cluster groups |
 
 ---
 
 ## Environment Variables
 
 ```env
-DATABASE_URL=postgresql://...   # Supabase connection string
-ALCHEMY_API_KEY=...             # Alchemy API key for Base chain
-PORT=8001                       # FastAPI port
+DATABASE_URL          # Supabase Postgres (required)
+CRON_API_KEY          # Protects /cron/* endpoints (required)
+BASE_WSS_URL          # Base mainnet WebSocket (Alchemy)
+BASE_RPC_URL          # Base mainnet RPC fallback
+PORT                  # Server port (default: 8001, Railway overrides)
 ```
 
 ---
 
-## Design Decisions
+## Local Development
 
-- **Python** for simulation (scipy, networkx, math-heavy)
-- **Monte Carlo with 50–100 runs** per scenario: statistically meaningful without being slow
-- **24h cache** for simulation results (expensive to compute)
-- **Behavior models parameterized** by (base_survival, shock_sensitivity, recovery_rate) — easy to tune
-- **Cascade shocks** attenuate exponentially per round — prevents infinite amplification
-- **Top 500 agents** for MVP, designed to scale horizontally (parallelize by address shard)
+```bash
+git clone https://github.com/JhiNResH/wadjet.git
+cd wadjet
+pip install -r requirements.txt
+export DATABASE_URL="postgresql://..."
+uvicorn main:app --reload --port 8001
+```
+
+---
+
+## Related
+
+- [Maiat Protocol](https://github.com/JhiNResH/maiat-protocol) — Trust oracle + API + frontend
+- [Maiat SDK](https://www.npmjs.com/package/maiat-sdk) — TypeScript client
+- [Dune Dashboard](https://dune.com/jhinresh/maiat-trust-infrastructure-base) — On-chain analytics
+
+---
+
+**Built by [Maiat Protocol](https://maiat.io)** — The trust layer for the agent economy.
