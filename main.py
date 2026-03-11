@@ -28,6 +28,16 @@ import logging
 import os
 from datetime import datetime
 from pathlib import Path
+
+
+def _get_db_url() -> str:
+    """Get DATABASE_URL with pgbouncer param stripped (psycopg2 compat)."""
+    url = os.environ["DATABASE_URL"]
+    if "?pgbouncer" in url:
+        url = url.split("?pgbouncer")[0]
+    elif "&pgbouncer" in url:
+        url = url.split("&pgbouncer")[0]
+    return url
 from typing import Optional
 
 import httpx
@@ -671,10 +681,7 @@ def _fetch_acp_data(wallet_address: str) -> dict:
     """Fetch ACP behavioral data from Supabase."""
     try:
         import psycopg2
-        db_url = os.environ.get(
-            "DATABASE_URL",
-            os.environ["DATABASE_URL"]
-        )
+        db_url = _get_db_url()
         conn = psycopg2.connect(db_url)
         cur = conn.cursor()
         cur.execute("""
@@ -1426,10 +1433,7 @@ async def get_top_risks(limit: int = 50, min_score: float = 0.5):
     try:
         import psycopg2
         import psycopg2.extras
-        db_url = os.environ.get(
-            "DATABASE_URL",
-            os.environ["DATABASE_URL"]
-        )
+        db_url = _get_db_url()
         conn = psycopg2.connect(db_url)
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute("""
@@ -1464,10 +1468,7 @@ async def get_risks_summary():
     """
     try:
         import psycopg2
-        db_url = os.environ.get(
-            "DATABASE_URL",
-            os.environ["DATABASE_URL"]
-        )
+        db_url = _get_db_url()
         conn = psycopg2.connect(db_url)
         cur = conn.cursor()
         cur.execute("""
@@ -1899,10 +1900,7 @@ async def get_watchlist_item_endpoint(token_address: str):
             )
 
         # Fetch last 7 days of snapshots for delta history
-        db_url = os.environ.get(
-            "DATABASE_URL",
-            os.environ["DATABASE_URL"]
-        )
+        db_url = _get_db_url()
         conn = psycopg2.connect(db_url)
         cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cur.execute("""
