@@ -680,7 +680,7 @@ def _fetch_acp_data(wallet_address: str) -> dict:
         cur.execute("""
             SELECT trust_score, completion_rate, total_jobs
             FROM agent_scores
-            WHERE wallet_address = %s OR token_address = %s
+            WHERE LOWER(wallet_address) = LOWER(%s) OR LOWER(token_address) = LOWER(%s)
             LIMIT 1
         """, (wallet_address, wallet_address))
         row = cur.fetchone()
