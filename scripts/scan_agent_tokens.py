@@ -29,6 +29,7 @@ import numpy as np
 import pandas as pd
 import psycopg2
 import psycopg2.extras
+from db.utils import get_db_url
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("scan_agent_tokens")
@@ -38,7 +39,7 @@ DATA_DIR    = SCRIPT_DIR.parent / "data"
 MODELS_DIR  = SCRIPT_DIR.parent / "models"
 CACHE_FILE  = DATA_DIR / "dex_cache.json"
 
-DB_URL = os.environ["DATABASE_URL"]
+DB_URL = get_db_url()
 ALCHEMY_KEY  = "okgmVpKT-5iqER0g5yjyn"
 ALCHEMY_BASE = f"https://base-mainnet.g.alchemy.com/v2/{ALCHEMY_KEY}"
 DEXSCREENER_URL = "https://api.dexscreener.com/latest/dex/tokens/{}"

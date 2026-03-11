@@ -20,6 +20,7 @@ import os
 import sys
 import time
 from datetime import datetime, timezone
+from db.utils import get_db_url
 
 # ─── Bootstrap path so we can import wadjet modules ──────────────────────────
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -529,7 +530,7 @@ def _run_health_signals_enrichment() -> int:
     import psycopg2
     import psycopg2.extras
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     enriched = 0
 
     try:

@@ -13,6 +13,7 @@ from pathlib import Path
 
 import pandas as pd
 import psycopg2
+from db.utils import get_db_url
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("build_from_cache")
@@ -22,7 +23,7 @@ DATA_DIR   = SCRIPT_DIR.parent / "data"
 CACHE_FILE = DATA_DIR / "dex_cache.json"
 OUTPUT_CSV = DATA_DIR / "virtuals_agent_dataset.csv"
 
-DB_URL = os.environ["DATABASE_URL"]
+DB_URL = get_db_url()
 
 
 def load_cache():

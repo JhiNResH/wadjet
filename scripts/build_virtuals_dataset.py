@@ -32,6 +32,7 @@ from pathlib import Path
 import httpx
 import pandas as pd
 import psycopg2
+from db.utils import get_db_url
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("build_virtuals_dataset")
@@ -43,7 +44,7 @@ DATA_DIR.mkdir(exist_ok=True)
 OUTPUT_CSV  = DATA_DIR / "virtuals_agent_dataset.csv"
 CACHE_FILE  = DATA_DIR / "dex_cache.json"
 
-DB_URL = os.environ["DATABASE_URL"]
+DB_URL = get_db_url()
 ALCHEMY_KEY = "okgmVpKT-5iqER0g5yjyn"
 ALCHEMY_BASE = f"https://base-mainnet.g.alchemy.com/v2/{ALCHEMY_KEY}"
 DEXSCREENER_URL = "https://api.dexscreener.com/latest/dex/tokens/{}"

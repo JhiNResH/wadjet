@@ -28,6 +28,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from typing import Optional
+from db.utils import get_db_url
 
 # Bootstrap path so we can import wadjet modules
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -65,7 +66,7 @@ def log_alert(alert_type: str, token_address: str, wallet_address: str, detail: 
     """Log an on-chain event to wadjet_alerts table."""
     try:
         import psycopg2
-        db_url = os.environ["DATABASE_URL"]
+        db_url = get_db_url()
         conn = psycopg2.connect(db_url)
         cur = conn.cursor()
 
@@ -99,7 +100,7 @@ def touch_agent_updated(wallet_address: str) -> None:
     """Update last_updated timestamp for a registered agent."""
     try:
         import psycopg2
-        db_url = os.environ["DATABASE_URL"]
+        db_url = get_db_url()
         conn = psycopg2.connect(db_url)
         cur = conn.cursor()
         cur.execute("""

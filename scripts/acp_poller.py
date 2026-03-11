@@ -25,6 +25,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 import httpx
+from db.utils import get_db_url
 
 # Bootstrap path so we can import wadjet modules
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -169,7 +170,7 @@ def upsert_agents(agents_data: list[dict]) -> tuple[int, int]:
     import psycopg2
     import psycopg2.extras
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     written = 0
     failed = 0
 

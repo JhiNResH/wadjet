@@ -31,6 +31,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 import requests
+from db.utils import get_db_url
 
 # ─── Bootstrap path ──────────────────────────────────────────────────────────
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +57,7 @@ BATCH_SIZE = 100                # Max rows to process per run
 def _get_conn():
     """Return a raw psycopg2 connection (strip pgbouncer param)."""
     import psycopg2
-    db_url = os.environ["DATABASE_URL"].split("?")[0]
+    db_url = get_db_url()
     return psycopg2.connect(db_url)
 
 

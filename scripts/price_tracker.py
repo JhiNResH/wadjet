@@ -27,6 +27,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 import httpx
+from db.utils import get_db_url
 
 # Bootstrap path
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -157,7 +158,7 @@ def get_agents_with_tokens() -> list[dict]:
     import psycopg2
     import psycopg2.extras
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     conn = psycopg2.connect(db_url)
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cur.execute("""
@@ -183,7 +184,7 @@ def save_price_snapshot(
     """
     import psycopg2
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
 
     # Build liquidity snapshot history
     existing_snapshots = []
@@ -248,7 +249,7 @@ def save_price_data_to_snapshots_table(
     """
     import psycopg2
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     try:
         conn = psycopg2.connect(db_url)
         cur = conn.cursor()

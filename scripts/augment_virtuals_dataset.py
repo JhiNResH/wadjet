@@ -16,6 +16,7 @@ import random
 import pandas as pd
 import psycopg2
 from pathlib import Path
+from db.utils import get_db_url
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("augment")
@@ -25,7 +26,7 @@ DATA_DIR   = SCRIPT_DIR.parent / "data"
 INPUT_CSV  = DATA_DIR / "virtuals_agent_dataset.csv"
 OUTPUT_CSV = DATA_DIR / "virtuals_agent_dataset.csv"
 
-DB_URL = os.environ["DATABASE_URL"]
+DB_URL = get_db_url()
 
 random.seed(42)
 

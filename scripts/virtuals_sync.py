@@ -27,6 +27,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 import httpx
+from db.utils import get_db_url
 
 # Bootstrap path
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -108,7 +109,7 @@ def get_existing_agents() -> tuple[dict[str, str], set[str]]:
     import psycopg2
     import psycopg2.extras
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     conn = psycopg2.connect(db_url)
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cur.execute("SELECT wallet_address, token_address, raw_metrics FROM agent_scores")
@@ -142,7 +143,7 @@ def update_agent_token(wallet_address: str, token_address: str, token_symbol: Op
     """Set token_address and token_symbol on an existing agent_scores row."""
     import psycopg2
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     conn = psycopg2.connect(db_url)
     cur = conn.cursor()
     cur.execute("""
@@ -164,7 +165,7 @@ def upsert_virtuals_agent(agent: dict) -> None:
     """
     import psycopg2
 
-    db_url = os.environ["DATABASE_URL"]
+    db_url = get_db_url()
     wallet = agent.get("sentientWalletAddress") or f"virtuals-{agent.get('id', 'unknown')}"
     token_address = agent.get("tokenAddress") or agent.get("token_address")
     if not token_address:
