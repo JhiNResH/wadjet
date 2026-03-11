@@ -2164,6 +2164,63 @@ async def run_daily_cron_endpoint(
     }
 
 
+@app.post("/cron/auto-outcomes", tags=["Cron"])
+async def trigger_auto_outcomes(
+    background_tasks: BackgroundTasks,
+    x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
+):
+    """
+    Trigger the auto-outcome reporter — closes the feedback loop for unreported queries.
+
+    Scans query_logs WHERE outcome IS NULL AND older than 7 days, determines
+    outcome (scam/failure/success/expired) via DexScreener + agent_scores, and
+    persists results.
+
+    Protected by X-Cron-Api-Key header.
+    Returns immediately; reporter runs in background.
+    """
+    _assert_cron_key(x_cron_api_key)
+
+    if _cron_state["running"]:
+        return {
+            "status": "already_running",
+            "message": "Another cron job is already in progress. Check /cron/status.",
+            "triggered_at": datetime.utcnow().isoformat() + "Z",
+        }
+
+    def _run_auto_outcomes_background():
+        import sys as _sys
+        _sys.path.insert(0, str(BASE_DIR))
+        try:
+            from scripts.auto_outcomes import run_auto_outcomes
+            result = run_auto_outcomes()
+            _cron_state["running"] = False
+            _cron_state["last_result"] = {
+                "job": "auto_outcomes",
+                **result,
+                "completed_at": datetime.utcnow().isoformat() + "Z",
+            }
+        except Exception as e:
+            logger.error(f"Auto-outcome background job failed: {e}", exc_info=True)
+            _cron_state["running"] = False
+            _cron_state["last_result"] = {
+                "job": "auto_outcomes",
+                "status": "failed",
+                "error": str(e),
+                "completed_at": datetime.utcnow().isoformat() + "Z",
+            }
+
+    _cron_state["running"] = True
+    background_tasks.add_task(_run_auto_outcomes_background)
+
+    return {
+        "status": "triggered",
+        "message": "Auto-outcome reporter started in background.",
+        "triggered_at": datetime.utcnow().isoformat() + "Z",
+        "poll_url": "/cron/status",
+    }
+
+
 @app.get("/cron/status", tags=["Cron"])
 async def cron_status(
     x_cron_api_key: Optional[str] = Header(None, alias="X-Cron-Api-Key"),
